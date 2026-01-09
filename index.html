@@ -14,72 +14,10 @@
       </div>
     </header>
 
-    <!-- Announcement modal shown on page load -->
-    <div id="announcement-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="announcement-title" aria-describedby="announcement-desc">
-      <div class="modal-panel">
-        <button class="modal-close" id="modal-close" aria-label="Close announcement">×</button>
-  <h2 id="announcement-title">LaceFi Autofill Extension Update</h2>
-        <div id="announcement-desc" class="modal-body">
-          <p>The official LaceFi Autofill Chrome Extension is currently under Google review. Once approved, it will be publicly available on the Chrome Web Store for direct download.</p>
-          <p><strong>This is only temporary. The Web Store version is coming soon.</strong></p>
-        </div>
-        <div class="modal-actions">
-          <button id="modal-ok" class="btn">OK</button>
-        </div>
-      </div>
-    </div>
-
     <main class="wrap main">
       <section>
-  <h2>Downloads</h2>
-        <p>Choose your platform below to download the extension package:</p>
-        <div class="downloads">
-          <div class="dl">
-      <h3>Phone (Quetta) (Android Users)</h3>
-            <p>Download the ZIP package to your Android device and open it from Quetta's extension installer (or upload the ZIP if Quetta supports local installs).</p>
-            <p><a class="btn" href="extension.zip" download>Download extension ZIP (mobile)</a></p>
-          </div>
-          <div class="dl">
-            <h3>Laptop (Chrome)</h3>
-            <p>Download the zip then extract to obtain a <code>dist/</code> folder and load it as an unpacked extension in Chrome (chrome://extensions → Developer mode → Load unpacked).</p>
-            <p><a class="btn" href="extension.zip">Download extension ZIP (laptop)</a></p>
-          </div>
-        </div>
-      </section>
-      <section class="hero">
-        <h2>Desktop (Chrome: dist folder)</h2>
-        <p>Follow these exact steps to install the extension from the <code>dist/</code> folder.</p>
-        <ol>
-          <li>Download the <code>zip</code> from the Downloads section on this page to your laptop and extract the dist folder.</li>
-          <li>Make sure you have <code>dist/</code> folder after extraction.</li>
-          <li>Open Chrome and go to <code>chrome://extensions</code>.</li>
-          <li>Enable <strong>Developer mode</strong> in the top right of the extensions page.</li>
-          <li>Click <strong>Load unpacked</strong> and choose the downloaded <code>dist/</code> folder.</li>
-          <li>After the extension loads, open a quiz. The floating Autofill widget, a yellow lightbulb icon, appears only when you open a quiz page.</li>
-          <li>To make the extension easy to find, pin its icon to the Chrome toolbar: click the puzzle icon in the toolbar, then click the pin next to the LaceFi Autofill entry.</li>
-          <li>
-            Look for this extension icon in Chrome and pin it to the toolbar:
-            <span style="display:inline-block;vertical-align:middle;margin-left:10px">
-              <!-- simple lightbulb SVG used as the extension icon preview -->
-              <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                <title>Extension icon preview</title>
-                <path fill="#ffd23f" d="M9 21h6v-1H9v1zm3-19C8.48 2 5 5.48 5 10c0 2.5 1.12 4.73 2.88 6.09.35.26.62.63.71 1.06l.28 1.22h6.22l.28-1.22c.09-.43.36-.8.71-1.06C17.88 14.73 19 12.5 19 10c0-4.52-3.48-8-8-8z"/>
-              </svg>
-            </span>
-          </li>
-        </ol>
-
-        <h3>How to use the widget</h3>
-        <ol>
-          <li>Tap the yellow floating lightbulb to open the Autofill panel or open the extension popup from the toolbar.</li>
-          <li>Enter your license key in the Enter License field or purchase credits in the popup as instructed.</li>
-          <li>Use Autofill only for practice and study. See the Compliance section below.</li>
-        </ol>
-      </section>
-
-      <section>
-  <h2>Mobile (Quetta v1.7.5: ZIP file)</h2>
-        <p>Follow these exact steps to install the extension using the extension ZIP on an Android device running Quetta v1.7.5.</p>
+  <h2>Mobile (Quetta Browser)</h2>
+        <p>Follow these simple steps to install the extension from the Chrome Web Store on your Android device using Quetta Browser:</p>
         <ol>
           <li>
             On your Android device, download
@@ -93,33 +31,15 @@
              and open the browser if it is not already installed.
           </li>
 
-          <li>Download the <strong>extension ZIP</strong> from the Downloads section on this page to your device.</li>
-          <li>In Quetta, tap the three dots menu located at the bottom right of the screen and choose <strong>Extensions</strong>.</li>
-          <li>
-            Look for this extension icon in Quetta so you know what to show or tap:
-            <span style="display:inline-block;vertical-align:middle;margin-left:10px">
-            <img
-                src="public/extension-images.png"
-                alt="LaceFi Autofill extension icon"
-                width="32"
-                height="32"
-                style="border-radius:6px;vertical-align:middle"
-            />
-            </span>
-          </li>
-          <li>Select <strong>Manage Extensions</strong></li>
-          <li>In the manage extension window, click the red text <strong>Developer options</strong></li>
-          <li>click <strong>(from .zip/.crx/.user.js)</strong> shown in the Extensions screen.</li>
-          <li>From the file picker, search for extension.zip and select the downloaded <code>extension.zip</code> in your device Downloads folder and confirm any permission prompts.</li>
-          <li>After installation, ensure the extension is <strong>Enabled</strong> in Quetta's Extensions list.</li>
-          <li>Open the three dots menu at the bottom right, choose <strong>Extensions</strong>, find <strong>LaceFi Autofill</strong>, and enable the option to show the extension icon in Quetta's browser UI so the icon appears on your screen.</li>
-          <li>Open your Moodle site in Quetta, sign in, and open a practice quiz. The floating Autofill widget, a lightbulb icon, will appear on supported pages.</li>
+          <li>In Quetta Browser, visit the <a href="https://chromewebstore.google.com/detail/kmjifemkagjedmdmondefpdblpppdihj?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">LaceFi Autofill Chrome Web Store page</a>.</li>
+          <li>Tap <strong>Add to Chrome</strong> to install the extension directly from the Chrome Web Store.</li>
+          <li>Open a quiz in this browser and you are good to go! The floating Autofill widget, a lightbulb icon, will appear on quiz pages.</li>
         </ol>
 
         <h4>If the widget does not appear</h4>
         <ol>
           <li>Open Quetta's Extensions list and verify LaceFi Autofill is enabled.</li>
-          <li>Reload the Moodle quiz page in Quetta.(make sure you have opened a cat/ exam)</li>
+          <li>Reload the Moodle quiz page in Quetta (make sure you have opened a cat/exam).</li>
         </ol>
         <h4>Watch how it works on phone (same flow on laptop)</h4>
             <p>This short video shows how LaceFi Autofill works on a phone. The same behavior applies on laptop using Chrome.</p>
@@ -139,41 +59,32 @@
 
       </section>
 
-      <section>
-        <h2>Screenshots</h2>
-  <p>Phone (Quetta) (Android Users) and desktop (Chrome) screenshots.</p>
+      <section class="hero">
+        <h2>Desktop (Chrome)</h2>
+        <p>Follow these simple steps to install the extension from the Chrome Web Store:</p>
+        <ol>
+          <li>Visit the <a href="https://chromewebstore.google.com/detail/kmjifemkagjedmdmondefpdblpppdihj?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">LaceFi Autofill Chrome Web Store page</a>.</li>
+          <li>Click <strong>Add to Chrome</strong> to install the extension.</li>
+          <li>After the extension installs, open a quiz. The floating Autofill widget, a yellow lightbulb icon, appears only when you open a quiz page.</li>
+          <li>To make the extension easy to find, pin its icon to the Chrome toolbar: click the puzzle icon in the toolbar, then click the pin next to the LaceFi Autofill entry.</li>
+          <li>
+            Look for this extension icon in Chrome and pin it to the toolbar:
+            <span style="display:inline-block;vertical-align:middle;margin-left:10px">
+              <!-- simple lightbulb SVG used as the extension icon preview -->
+              <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <title>Extension icon preview</title>
+                <path fill="#ffd23f" d="M9 21h6v-1H9v1zm3-19C8.48 2 5 5.48 5 10c0 2.5 1.12 4.73 2.88 6.09.35.26.62.63.71 1.06l.28 1.22h6.22l.28-1.22c.09-.43.36-.8.71-1.06C17.88 14.73 19 12.5 19 10c0-4.52-3.48-8-8-8z"/>
+              </svg>
+            </span>
+          </li>
+        </ol>
 
-  <h3>Mobile: Quetta</h3>
-        <div class="gallery">
-          <figure>
-            <img src="public/Screenshot_2026-01-04-08-31-31-074_net.quetta.browser.jpg" alt="Quetta screenshot, widget on page" />
-            <figcaption>In Quetta, tap the three dots menu located at the bottom right of the screen</figcaption>
-          </figure>
-          <figure>
-            <img src="public/Screenshot_2026-01-04-08-31-35-328_net.quetta.browser.jpg" alt="Quetta screenshot, license entry" />
-            <figcaption>Look for this extension icon in Quetta so you know what to show or tap</figcaption>
-          </figure>
-          <figure>
-            <img src="public/Screenshot_2026-01-04-08-31-53-017_net.quetta.browser.jpg" alt="Quetta screenshot, popup" />
-            <figcaption>Click (from .zip/.crx/.user.js) shown in the Extensions screen.</figcaption>
-          </figure>
-        </div>
-
-  <h3>Desktop: Chrome</h3>
-        <div class="gallery">
-          <figure>
-            <img src="public/Screenshot from 2026-01-04 08-35-43.png" alt="Chrome screenshot, floating widget" />
-            <figcaption>Chrome Extension screen</figcaption>
-          </figure>
-          <figure>
-            <img src="public/Screenshot from 2026-01-04 08-43-16.png" alt="Chrome screenshot, popup" />
-            <figcaption>Extension icon on desktop</figcaption>
-          </figure>
-          <figure>
-            <img src="public/Screenshot from 2026-01-04 08-43-29.png" alt="Chrome screenshot, paid license" />
-            <figcaption>Pay for license or add licence key</figcaption>
-          </figure>
-        </div>
+        <h3>How to use the widget</h3>
+        <ol>
+          <li>Tap the yellow floating lightbulb to open the Autofill panel or open the extension popup from the toolbar.</li>
+          <li>Enter your license key in the Enter License field or purchase credits in the popup as instructed.</li>
+          <li>Use Autofill only for practice and study. See the Compliance section below.</li>
+        </ol>
       </section>
 
       <section>
@@ -206,36 +117,5 @@
     <footer class="site-footer">
   <div class="wrap">© LaceFi. Use only for practice and study. Do not use to cheat on live exams.</div>
     </footer>
-    <script>
-      // Announcement modal behavior: show on every page load
-      (function(){
-        const modal = document.getElementById('announcement-modal');
-        const closeBtn = document.getElementById('modal-close');
-        const okBtn = document.getElementById('modal-ok');
-
-        function show() {
-          if(!modal) return;
-          modal.style.display = 'flex';
-          // prevent background scroll
-          document.documentElement.style.overflow = 'hidden';
-        }
-        function hide(){
-          if(!modal) return;
-          modal.style.display = 'none';
-          document.documentElement.style.overflow = '';
-        }
-
-        // Show immediately on DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', show);
-
-        if(closeBtn) closeBtn.addEventListener('click', hide);
-        if(okBtn) okBtn.addEventListener('click', hide);
-
-        // Allow ESC to dismiss
-        document.addEventListener('keydown', function(e){
-          if(e.key === 'Escape') hide();
-        });
-      })();
-    </script>
   </body>
 </html>

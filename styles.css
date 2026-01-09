@@ -57,7 +57,7 @@ body::before{
 }
 
 /* Accent link styles */
-a{color:var(--accent)}
+a{color:#0066cc}
 a.btn{color:var(--brand)}
 
 /* Modal styles for announcement */
