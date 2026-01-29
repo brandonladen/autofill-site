@@ -6,6 +6,143 @@
     <title>LaceFi Autofill: Quick Start Guide</title>
     <link rel="stylesheet" href="styles.css" />
     <meta name="google-site-verification" content="gbqhJfNypIPMtUK57VWBlHj7fj_xfgeCYKs5dsi5I-k" />
+    <style>
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(135deg, #3b82f6, #6366f1);
+        color: #fff;
+        padding: 16px 32px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+        margin: 16px 0;
+      }
+      .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        text-decoration: none;
+        color: #fff;
+      }
+      .download-btn svg {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+      .download-section {
+        text-align: center;
+        padding: 32px;
+        background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+        border-radius: 16px;
+        margin-bottom: 24px;
+        border: 2px dashed #3b82f6;
+      }
+      .download-section h2 {
+        border: none;
+        padding-bottom: 0;
+      }
+      .warning-box {
+        background: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        padding: 16px 20px;
+        border-radius: 0 8px 8px 0;
+        margin: 16px 0;
+      }
+      .warning-box h4 {
+        margin: 0 0 8px;
+        color: #b45309;
+      }
+      .warning-box p {
+        margin: 0;
+        font-size: 15px;
+        color: #92400e;
+      }
+      .code-box {
+        background: #1e293b;
+        color: #e2e8f0;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin: 12px 0;
+        font-family: monospace;
+        font-size: 14px;
+        overflow-x: auto;
+      }
+      .browser-options {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin: 16px 0;
+      }
+      .browser-option {
+        flex: 1;
+        min-width: 200px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+      .browser-option h4 {
+        margin: 0 0 8px;
+        color: #1e293b;
+      }
+      .browser-option p {
+        margin: 0;
+        font-size: 14px;
+      }
+      .quetta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #f1f5f9;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      /* Mobile-friendly styles */
+      @media (max-width: 640px) {
+        .download-section {
+          padding: 20px 16px;
+          margin-bottom: 16px;
+        }
+        .download-btn {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          padding: 14px 20px;
+          font-size: 1rem;
+        }
+        .code-box {
+          font-size: 12px;
+          padding: 10px 12px;
+          word-break: break-all;
+        }
+        .warning-box,
+        .tip-box {
+          padding: 12px 14px;
+        }
+        .warning-box p,
+        .tip-box p {
+          font-size: 14px;
+        }
+        .browser-option {
+          min-width: 100%;
+        }
+        .quetta-btn {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          padding: 14px 16px;
+          font-size: 0.95rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -27,34 +164,113 @@
     </header>
 
     <main class="wrap main">
+      <!-- Download Section -->
+      <div class="download-section">
+        <h2>Download Extension</h2>
+        <p>Download the extension ZIP file to install manually on your device.</p>
+        <a href="extension.zip" class="download-btn" download>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+          </svg>
+          Download ZIP File
+        </a>
+        <p style="font-size: 14px; color: #64748b; margin-bottom: 0;">Click to download extension.zip</p>
+      </div>
+
+      <!-- Mobile Installation -->
       <section>
-        <h2>Mobile Installation (Quetta Browser)</h2>
-        <p>Install the extension on your Android device using Quetta Browser:</p>
+        <h2>Mobile Installation (Android)</h2>
+        <p>First things first - you'll need <strong>Quetta Browser</strong> to run extensions on Android!</p>
+
+        <p style="margin-bottom: 16px;">
+          <a href="https://play.google.com/store/apps/details?id=net.quetta.browser" target="_blank" class="quetta-btn">
+            Download Quetta Browser from Play Store
+          </a>
+        </p>
+
+        <h3>Installation Steps</h3>
         <ol>
           <li>
-            Download and install
-            <a href="https://play.google.com/store/apps/details?id=net.quetta.browser" target="_blank" rel="noopener noreferrer">Quetta Browser from the Google Play Store</a>
-            if you don't have it already.
+            <strong>Download the ZIP file</strong> using the button above. The file saves to your Downloads folder.
           </li>
           <li>
-            Open Quetta Browser and visit the
-            <a href="https://chromewebstore.google.com/detail/kmjifemkagjedmdmondefpdblpppdihj?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">LaceFi Autofill Chrome Web Store page</a>.
+            <strong>Open Quetta Browser</strong> and tap the three-dot menu (bottom right).
           </li>
-          <li>Tap <strong>Add to Chrome</strong> to install the extension.</li>
-          <li>Open any quiz page — the floating lightbulb widget will appear automatically.</li>
+          <li>
+            <strong>Go to Extensions</strong> - tap the Extensions icon (puzzle icon) from the menu.
+          </li>
+          <li>
+            <strong>Manage Extensions</strong> - tap "Manage Extensions" at the bottom.
+          </li>
+          <li>
+            <strong>Developer options</strong> - tap "Developer options" button.
+          </li>
+          <li>
+            <strong>Load extension</strong> - tap <strong>"(from .zip/.crx/.user.js)"</strong>
+          </li>
+          <li>
+            <strong>Select the ZIP file:</strong> Search for <strong>"extension.zip"</strong> and select the one downloaded recently (check the date).
+          </li>
+          <li>
+            <strong>Done!</strong> Open any Moodle quiz page - the yellow lightbulb widget appears automatically.
+          </li>
         </ol>
 
         <div class="tip-box">
-          <h4>Widget not showing?</h4>
-          <p>Open Quetta's Extensions list to verify LaceFi Autofill is enabled, then reload the quiz page.</p>
+          <h4>Finding the ZIP file on phone</h4>
+          <p>Open your file manager and check: <strong>Internal Storage > Download</strong>. Or search for "extension.zip" in the file picker.</p>
         </div>
 
-        <h3>Video Demo</h3>
-        <p>See how LaceFi Autofill works on mobile (same flow applies on desktop):</p>
+        <div class="warning-box">
+          <h4>Widget not showing?</h4>
+          <p>Make sure the extension is enabled in Extensions page, then reload the quiz page.</p>
+        </div>
+      </section>
+
+      <!-- Desktop Installation -->
+      <section>
+        <h2>Desktop Installation (Chrome/Edge/Brave)</h2>
+        <p>Install the extension manually on your computer:</p>
+
+        <ol>
+          <li>
+            <strong>Download the ZIP file</strong> using the button above.
+          </li>
+          <li>
+            <strong>Extract the ZIP file</strong> to a folder (right-click > "Extract All" on Windows, or double-click on Mac).
+          </li>
+          <li>
+            <strong>Open Chrome</strong> and type this in the address bar:
+            <div class="code-box">chrome://extensions</div>
+          </li>
+          <li>
+            <strong>Enable Developer Mode</strong> - toggle the switch in the top-right corner.
+          </li>
+          <li>
+            <strong>Click "Load unpacked"</strong> button (top-left area).
+          </li>
+          <li>
+            <strong>Select the extracted folder</strong> - choose the folder containing manifest.json.
+          </li>
+          <li>
+            <strong>Done!</strong> The extension icon appears in your toolbar.
+          </li>
+        </ol>
+
+        <div class="tip-box">
+          <h4>Keep the folder!</h4>
+          <p>Don't delete the extracted folder - Chrome needs it to run the extension. Move it somewhere permanent like Documents.</p>
+        </div>
+      </section>
+
+      <!-- Video Demo -->
+      <section>
+        <h2>Video Demo</h2>
+        <p>See how LaceFi Autofill works:</p>
         <div class="video-container">
           <iframe
             src="https://www.youtube.com/embed/wohjoE9Xq_U"
-            title="LaceFi Autofill mobile demo"
+            title="LaceFi Autofill demo"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
@@ -62,56 +278,40 @@
         </div>
       </section>
 
+      <!-- How to Use -->
       <section>
-        <h2>Desktop Installation (Chrome)</h2>
-        <p>Install the extension directly from the Chrome Web Store:</p>
+        <h2>How to Use</h2>
         <ol>
-          <li>
-            Visit the
-            <a href="https://chromewebstore.google.com/detail/kmjifemkagjedmdmondefpdblpppdihj?utm_source=item-share-cb" target="_blank" rel="noopener noreferrer">LaceFi Autofill Chrome Web Store page</a>.
-          </li>
-          <li>Click <strong>Add to Chrome</strong> to install.</li>
-          <li>Open any quiz page — the yellow lightbulb widget appears automatically.</li>
-          <li>
-            <strong>Optional:</strong> Pin the extension to your toolbar by clicking the puzzle icon, then clicking the pin next to LaceFi Autofill.
-            <div class="icon-preview">
-              <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#ffd23f" d="M9 21h6v-1H9v1zm3-19C8.48 2 5 5.48 5 10c0 2.5 1.12 4.73 2.88 6.09.35.26.62.63.71 1.06l.28 1.22h6.22l.28-1.22c.09-.43.36-.8.71-1.06C17.88 14.73 19 12.5 19 10c0-4.52-3.48-8-8-8z"/>
-              </svg>
-              <span>Extension icon</span>
-            </div>
-          </li>
-        </ol>
-
-        <h3>How to Use</h3>
-        <ol>
-          <li>Tap the floating lightbulb or click the extension icon in your toolbar.</li>
-          <li>Enter your license key in the popup or purchase credits as instructed.</li>
-          <li>Use Autofill only for practice and study purposes.</li>
+          <li>Open any Moodle quiz or Google Forms page.</li>
+          <li>The yellow lightbulb widget appears on the page.</li>
+          <li>Tap the lightbulb to open the panel.</li>
+          <li>New users get <strong>5 free credits</strong> automatically!</li>
+          <li>Click "Start Autofill" to fill in answers.</li>
+          <li>Need more credits? Use the "Buy Credits" button in the widget.</li>
         </ol>
       </section>
 
+      <!-- Licenses & Payments -->
       <section>
         <h2>Licenses & Payments</h2>
-        <p>The system uses Paystack for secure payments and automatic license key generation.</p>
         <ul>
-          <li>After purchase, your license key is automatically saved to the extension.</li>
-          <li>The extension validates your license with the system before using credits.</li>
-          <li>You can also receive manual license keys from your instructor or admin.</li>
+          <li>New users receive 5 free credits automatically.</li>
+          <li>Purchase more credits securely via M-Pesa (Paystack).</li>
+          <li>Your license key saves automatically after purchase.</li>
+          <li>Refer friends to earn bonus credits!</li>
         </ul>
       </section>
 
+      <!-- Privacy & Support -->
       <section>
         <h2>Privacy & Support</h2>
-        <p>We only store license keys and minimal usage metadata to track credits. Payment card data is handled securely by Paystack — we never see your card details.</p>
-        <p>
-          <a href="privacy.html">Read our full Privacy Policy</a>
-        </p>
+        <p>We only store license keys and minimal usage data. Payment details are handled securely by Paystack.</p>
+        <p><a href="privacy.html">Read our full Privacy Policy</a></p>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="wrap">© LaceFi. Use only for practice and study. Do not use to cheat on live exams.</div>
+      <div class="wrap">LaceFi Autofill. Use only for practice and study purposes.</div>
     </footer>
   </body>
 </html>
