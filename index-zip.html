@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>LaceFi Autofill: Manual ZIP Installation</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="google-site-verification" content="gbqhJfNypIPMtUK57VWBlHj7fj_xfgeCYKs5dsi5I-k" />
+    <style>
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(135deg, #3b82f6, #6366f1);
+        color: #fff;
+        padding: 16px 32px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+        margin: 16px 0;
+      }
+      .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        text-decoration: none;
+        color: #fff;
+      }
+      .download-btn svg {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+      .download-section {
+        text-align: center;
+        padding: 32px;
+        background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+        border-radius: 16px;
+        margin-bottom: 24px;
+        border: 2px dashed #3b82f6;
+      }
+      .download-section h2 {
+        border: none;
+        padding-bottom: 0;
+      }
+      .warning-box {
+        background: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        padding: 16px 20px;
+        border-radius: 0 8px 8px 0;
+        margin: 16px 0;
+      }
+      .warning-box h4 {
+        margin: 0 0 8px;
+        color: #b45309;
+      }
+      .warning-box p {
+        margin: 0;
+        font-size: 15px;
+        color: #92400e;
+      }
+      .code-box {
+        background: #1e293b;
+        color: #e2e8f0;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin: 12px 0;
+        font-family: monospace;
+        font-size: 14px;
+        overflow-x: auto;
+      }
+      .browser-options {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin: 16px 0;
+      }
+      .browser-option {
+        flex: 1;
+        min-width: 200px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+      .browser-option h4 {
+        margin: 0 0 8px;
+        color: #1e293b;
+      }
+      .browser-option p {
+        margin: 0;
+        font-size: 14px;
+      }
+      .quetta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #f1f5f9;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      /* Mobile-friendly styles */
+      @media (max-width: 640px) {
+        .download-section {
+          padding: 20px 16px;
+          margin-bottom: 16px;
+        }
+        .download-btn {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          padding: 14px 20px;
+          font-size: 1rem;
+        }
+        .code-box {
+          font-size: 12px;
+          padding: 10px 12px;
+          word-break: break-all;
+        }
+        .warning-box,
+        .tip-box {
+          padding: 12px 14px;
+        }
+        .warning-box p,
+        .tip-box p {
+          font-size: 14px;
+        }
+        .browser-option {
+          min-width: 100%;
+        }
+        .quetta-btn {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          padding: 14px 16px;
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <h1>LaceFi Autofill</h1>
+        <p class="tag">Autofill practice quizzes and forms</p>
+        <a
+          href="https://chat.whatsapp.com/J3h9HdbxwNIAZCgvrIiNB7"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="whatsapp-cta"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Join Support Group
+        </a>
+      </div>
+    </header>
+
+    <main class="wrap main">
+      <!-- Download Section -->
+      <div class="download-section">
+        <h2>Download Extension - v5.0.8</h2>
+        <p>Download the extension ZIP file to install manually on your device.</p>
+        <a href="extension-v5.0.8.zip" class="download-btn" download>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+          </svg>
+          Download ZIP File
+        </a>
+        <p style="font-size: 14px; color: #64748b; margin-bottom: 8px;">Click to download extension.zip</p>
+        <p style="font-size: 14px; margin-bottom: 0;">
+          <a href="https://lacefi-autofill-backend-apis.vercel.app/release-notes.html" target="_blank" rel="noopener noreferrer" style="color: #6366f1; text-decoration: none; font-weight: 500;">View Release Notes & Changelog</a>
+        </p>
+      </div>
+
+      <!-- Mobile Installation -->
+      <section>
+        <h2>Mobile Installation (Android)</h2>
+        <p>First things first - you'll need <strong>Quetta Browser</strong> to run extensions on Android!</p>
+
+        <p style="margin-bottom: 16px;">
+          <a href="https://play.google.com/store/apps/details?id=net.quetta.browser" target="_blank" class="quetta-btn">
+            Download Quetta Browser from Play Store
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=net.quetta.browser" target="_blank" rel="noopener noreferrer" style="margin-left: 8px; padding: 6px 12px; font-size: 14px; background: #22c55e; color: #fff; text-decoration: none; border-radius: 4px; display: inline-block;">Click to Download</a>
+        </p>
+
+        <h3>Installation Steps</h3>
+        <ol>
+          <li>
+            <strong>Download the ZIP file</strong> using the button above. The file saves to your Downloads folder.
+          </li>
+          <li>
+            <strong>Open Quetta Browser</strong> and tap the three-dot menu (bottom right).
+          </li>
+          <li>
+            <strong>Go to Extensions</strong> - tap the Extensions icon (puzzle icon) from the menu.
+          </li>
+          <li>
+            <strong>Manage Extensions</strong> - tap "Manage Extensions" at the bottom.
+          </li>
+          <li>
+            <strong>Developer options</strong> - tap "Developer options" button.
+          </li>
+          <li>
+            <strong>Load extension</strong> - tap <strong>"(from .zip/.crx/.user.js)"</strong>
+          </li>
+          <li>
+            <strong>Select the ZIP file:</strong> Search for <strong>"extension.zip"</strong> and select the one downloaded recently (check the date).
+          </li>
+          <li>
+            <strong>Done!</strong> Open any Moodle quiz page - the yellow lightbulb widget appears automatically.
+          </li>
+        </ol>
+
+        <div class="tip-box">
+          <h4>Finding the ZIP file on phone</h4>
+          <p>Open your file manager and check: <strong>Internal Storage > Download</strong>. Or search for "extension.zip" in the file picker.</p>
+        </div>
+
+        <div class="warning-box">
+          <h4>Widget not showing?</h4>
+          <p>Make sure the extension is enabled in Extensions page, then reload the quiz page.</p>
+        </div>
+      </section>
+
+      <!-- Desktop Installation -->
+      <section>
+        <h2>Desktop Installation (Chrome/Edge/Brave)</h2>
+        <p>Install the extension manually on your computer:</p>
+
+        <ol>
+          <li>
+            <strong>Download the ZIP file</strong> using the button above.
+          </li>
+          <li>
+            <strong>Extract the ZIP file</strong> to a folder (right-click > "Extract All" on Windows, or double-click on Mac).
+          </li>
+          <li>
+            <strong>Open Chrome</strong> and type this in the address bar:
+            <div class="code-box">chrome://extensions</div>
+          </li>
+          <li>
+            <strong>Enable Developer Mode</strong> - toggle the switch in the top-right corner.
+          </li>
+          <li>
+            <strong>Click "Load unpacked"</strong> button (top-left area).
+          </li>
+          <li>
+            <strong>Select the extracted folder</strong> - choose the folder containing manifest.json.
+          </li>
+          <li>
+            <strong>Done!</strong> The extension icon appears in your toolbar.
+          </li>
+        </ol>
+
+        <div class="tip-box">
+          <h4>Keep the folder!</h4>
+          <p>Don't delete the extracted folder - Chrome needs it to run the extension. Move it somewhere permanent like Documents.</p>
+        </div>
+      </section>
+
+      <!-- Video Demo -->
+      <section>
+        <h2>Video Demo</h2>
+        <p>See how LaceFi Autofill works:</p>
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/wohjoE9Xq_U"
+            title="LaceFi Autofill demo"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+
+      <!-- How to Use -->
+      <section>
+        <h2>How to Use</h2>
+        <ol>
+          <li>Open any Moodle quiz or Google Forms page.</li>
+          <li>The yellow lightbulb widget appears on the page.</li>
+          <li>Tap the lightbulb to open the panel.</li>
+          <li>New users get <strong>5 free credits</strong> automatically!</li>
+          <li>Click "Start Autofill" to fill in answers.</li>
+          <li>Need more credits? Use the "Buy Credits" button in the widget.</li>
+        </ol>
+      </section>
+
+      <!-- Licenses & Payments -->
+      <section>
+        <h2>Licenses & Payments</h2>
+        <ul>
+          <li>New users receive 5 free credits automatically.</li>
+          <li>Purchase more credits securely via M-Pesa (Paystack).</li>
+          <li>Your license key saves automatically after purchase.</li>
+          <li>Refer friends to earn bonus credits!</li>
+        </ul>
+      </section>
+
+      <!-- Privacy & Support -->
+      <section>
+        <h2>Privacy & Support</h2>
+        <p>We only store license keys and minimal usage data. Payment details are handled securely by Paystack.</p>
+        <p><a href="privacy.html">Read our full Privacy Policy</a></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">LaceFi Autofill. Use only for practice and study purposes.</div>
+    </footer>
+  </body>
+</html>
