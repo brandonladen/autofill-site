@@ -31,7 +31,14 @@
         <h2>Choose Installation Method</h2>
         <p>Select the installation method that works best for you:</p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;">
+        <div class="installation-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;">
+          <style>
+            @media (max-width: 768px) {
+              .installation-grid {
+                grid-template-columns: 1fr !important;
+              }
+            }
+          </style>
           <div class="browser-option">
             <h4><strong>Easy Installation</strong></h4>
             <p><strong>Install directly from Chrome Web Store (recommended for most users)</strong></p>
