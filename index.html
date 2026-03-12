@@ -3,66 +3,127 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>LaceFi Autofill: Quick Start Guide</title>
+    <title>LaceFi Autofill - Quick Start Guide</title>
+    <meta name="description" content="LaceFi Autofill helps you autofill practice quizzes and forms. Installation guides for Chrome and manual setup." />
+    <link rel="canonical" href="https://guide.lacefi.co.ke/" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <meta name="google-site-verification" content="gbqhJfNypIPMtUK57VWBlHj7fj_xfgeCYKs5dsi5I-k" />
     <meta name="google-site-verification" content="0caBqUpGTrCRnl18_9s6ijyTphaZDAA6n0xJyyWCiLU" />
   </head>
   <body>
-    <header class="site-header">
-      <div class="wrap">
-        <h1>LaceFi Autofill</h1>
-        <p class="tag">Autofill practice quizzes and forms</p>
-        <a
-          href="https://chat.whatsapp.com/J3h9HdbxwNIAZCgvrIiNB7"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="whatsapp-cta"
-        >
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Join Support Group
+    <nav class="site-nav">
+      <div class="wrap-full">
+        <a href="/" class="nav-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 21h6v-1H9v1zm3-19C8.48 2 5 5.48 5 10c0 2.5 1.12 4.73 2.88 6.09.35.26.62.63.71 1.06l.28 1.22h6.22l.28-1.22c.09-.43.36-.8.71-1.06C17.88 14.73 19 12.5 19 10c0-4.52-3.48-8-8-8z" fill="#ffd23f"/></svg>
+          <span>LaceFi Autofill</span>
         </a>
+        <ul class="nav-links">
+          <li><a href="https://chat.whatsapp.com/J3h9HdbxwNIAZCgvrIiNB7" target="_blank" rel="noopener noreferrer" class="nav-cta">Support</a></li>
+        </ul>
       </div>
-    </header>
+    </nav>
 
-    <main class="wrap main">
-      <section>
-        <h2>Choose Installation Method</h2>
-        <p>Select the installation method that works best for you:</p>
-
-        <div class="installation-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;">
-          <style>
-            @media (max-width: 768px) {
-              .installation-grid {
-                grid-template-columns: 1fr !important;
-              }
-            }
-          </style>
-          <div class="browser-option">
-            <h4><strong>Easy Installation</strong></h4>
-            <p><strong>Install directly from Chrome Web Store (recommended for most users)</strong></p>
-            <a href="index-chrome.html" class="download-btn" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s ease; box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4); margin-top: 12px;">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-              Chrome Web Store
-            </a>
-          </div>
-          <div class="browser-option">
-            <h4>Manual Installation</h4>
-            <p>Download ZIP file and install manually (for restricted regions or custom setups)</p>
-            <a href="index-zip.html" class="download-btn" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s ease; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4); margin-top: 12px;">
-                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-              </svg>
-              Manual ZIP Install
-            </a>
-          </div>
+    <div class="page-layout">
+      <!-- Main content -->
+      <div class="page-main">
+        <div class="page-header">
+          <h1>LaceFi Autofill</h1>
+          <p>Autofill practice quizzes and forms on Moodle and Google Forms.</p>
         </div>
-      </section>
+
+        <section>
+          <h2>Choose Installation Method</h2>
+          <div class="install-grid">
+            <a href="index-chrome.html" class="install-card">
+              <span class="card-label green">Recommended</span>
+              <h3>Chrome Web Store</h3>
+              <p>Install directly from the store. One click, automatic updates.</p>
+            </a>
+            <a href="index-zip.html" class="install-card">
+              <span class="card-label amber">Alternative</span>
+              <h3>Manual ZIP Install</h3>
+              <p>Download ZIP and load manually. For restricted regions or custom setups.</p>
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <h2>How It Works</h2>
+          <ol>
+            <li>Install the extension using one of the methods above.</li>
+            <li>Open any Moodle quiz or Google Forms page.</li>
+            <li>The lightbulb widget appears — tap it to autofill.</li>
+            <li>New users get <strong>5 free credits</strong> to start.</li>
+          </ol>
+        </section>
+
+        <section class="game-section">
+          <div class="game-layout">
+            <div class="game-text">
+              <span class="card-label purple">Mini Game</span>
+              <h2>Bored? Try Number Duel</h2>
+              <p>Challenge a friend to a multiplayer number guessing game. Bluff, guess, and outsmart your opponent to earn money.</p>
+              <a href="https://numberduel.lacefi.co.ke/" target="_blank" rel="noopener noreferrer" class="btn-play">Play Now <span class="play-arrow">&rarr;</span></a>
+            </div>
+            <a href="https://numberduel.lacefi.co.ke/" target="_blank" rel="noopener noreferrer" class="game-screenshot-link">
+              <img src="public/numberduel.png" alt="Number Duel - multiplayer number guessing game" class="game-screenshot" />
+            </a>
+          </div>
+        </section>
+
+        <section style="text-align: center;">
+          <h2>Need Help?</h2>
+          <p>Join our WhatsApp group for quick support and updates.</p>
+          <a href="https://chat.whatsapp.com/J3h9HdbxwNIAZCgvrIiNB7" target="_blank" rel="noopener noreferrer" class="whatsapp-cta">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Join Support Group
+          </a>
+        </section>
+      </div>
+
+      <!-- Right sidebar ad -->
+      <aside class="sidebar-ad">
+        <a href="https://numberduel.lacefi.co.ke/" target="_blank" rel="noopener noreferrer" class="ad-card">
+          <div class="ad-img">
+            <img src="public/numberduel.png" alt="Number Duel" />
+          </div>
+          <div class="ad-content">
+            <div class="ad-headline">Win Real Money</div>
+            <div class="ad-sub">Find a friend. Enter the arena.<br/>Battle &amp; pocket the cash.</div>
+            <div class="ad-cta">Play Now <span class="ad-arrow">&rarr;</span></div>
+          </div>
+        </a>
+      </aside>
+    </div>
+
+    <!-- Mobile bottom banner ad -->
+    <div class="bottom-ad" id="bottomAd">
+      <button class="bottom-ad-close" onclick="document.getElementById('bottomAd').classList.add('hidden');">&times;</button>
+      <a href="https://numberduel.lacefi.co.ke/" target="_blank" rel="noopener noreferrer" class="bottom-ad-inner">
+        <div class="bottom-ad-img">
+          <img src="public/numberduel.png" alt="Number Duel" />
+        </div>
+        <div class="bottom-ad-text">
+          <div class="bottom-ad-title">Win Real Money</div>
+          <div class="bottom-ad-desc">Battle a friend in Number Duel</div>
+        </div>
+        <div class="bottom-ad-btn">Play <span class="ad-arrow">&rarr;</span></div>
+      </a>
+    </div>
 
     <footer class="site-footer">
-      <div class="wrap">© LaceFi. Use only for practice and study. Do not use to cheat on live exams.</div>
+      <div class="wrap-full">
+        <div class="footer-content">
+          <div class="footer-left">&copy; 2026 <strong>LaceFi</strong>. For practice and study only.</div>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="https://numberduel.lacefi.co.ke/" target="_blank" rel="noopener noreferrer">Number Duel</a></li>
+          </ul>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
