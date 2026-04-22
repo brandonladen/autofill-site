@@ -64,6 +64,8 @@
           <li><strong>Quiz usage / user activity:</strong> Tracks which practice quizzes are autofilled and how many credits are used.</li>
           <li><strong>Uploaded documents:</strong> Study materials you upload are stored and processed into embeddings to provide more accurate answers.</li>
           <li><strong>University name:</strong> Collected on document uploads to scope materials to the correct institution.</li>
+          <li><strong>Issue reports you submit:</strong> When you report a problem, we collect your selected issue category, note, timestamp, page URL/title, and extension/browser version details to help investigate and fix issues faster.</li>
+          <li><strong>Optional debug data in issue reports:</strong> If you enable debug sharing while reporting an issue, we may also receive a page snapshot and extension local storage data to reproduce technical problems.</li>
           <li><strong>IP address:</strong> Logged for rate limiting to prevent abuse.</li>
           <li><strong>Bug report page content:</strong> If you use the in-extension "Report Issue" feature, a snapshot of the current page (the HTML of the quiz you are on) is sent to us so our engineers can reproduce and fix the problem. These snapshots are auto-deleted after 90 days.</li>
         </ul>
@@ -77,6 +79,7 @@
           <li>Enable the extension to autofill forms on Moodle practice quizzes.</li>
           <li>Process quiz questions using AI to generate answers.</li>
           <li>Scope uploaded study materials to the correct university so students only access their own institution's content.</li>
+          <li>Investigate and resolve user-reported issues, including diagnostics you choose to share.</li>
           <li>Manage the service and review uploaded content.</li>
         </ul>
 
@@ -89,6 +92,7 @@
         <h2>Your Choices</h2>
         <ul>
           <li>You can uninstall the extension at any time.</li>
+          <li>You control whether optional debug data is included when submitting an issue report.</li>
           <li>License and credit information is deleted when accounts are removed or licenses expire.</li>
         </ul>
 
@@ -100,7 +104,7 @@
 
   <footer>
     <div class="wrap">
-      <div class="footer-left">&copy; 2026 <strong>LaceFi</strong>. Use only for practice and study.</div>
+      <div class="footer-left">&copy; <span id='copyright-year'>2026</span> <strong>LaceFi</strong>. Use only for practice and study.</div>
       <ul class="footer-links">
         <li><a href="/">Home</a></li>
         <li><a href="terms.html">Terms</a></li>
@@ -108,5 +112,8 @@
       </ul>
     </div>
   </footer>
+  <script>
+    document.getElementById('copyright-year').textContent = String(new Date().getFullYear());
+  </script>
 </body>
 </html>
