@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LaceFi Reveal</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f8fafc;
+        --panel: rgba(255, 255, 255, 0.88);
+        --border: rgba(148, 163, 184, 0.24);
+        --text: #0f172a;
+        --muted: #475569;
+        --accent: #2563eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background:
+          radial-gradient(circle at top, rgba(37, 99, 235, 0.1), transparent 34%),
+          linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+        color: var(--text);
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      main {
+        width: 100%;
+        max-width: 560px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: var(--panel);
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        padding: 32px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(37, 99, 235, 0.16);
+        border-radius: 999px;
+        padding: 6px 12px;
+        color: var(--accent);
+        font-size: 0.875rem;
+        font-weight: 600;
+        background: rgba(37, 99, 235, 0.06);
+      }
+
+      h1 {
+        margin: 18px 0 10px;
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 34rem;
+        margin: 0 auto;
+      }
+
+      .steps {
+        margin: 20px auto 0;
+        padding: 0;
+        list-style: none;
+        max-width: 30rem;
+        text-align: left;
+        color: var(--muted);
+      }
+
+      .steps li + li {
+        margin-top: 12px;
+      }
+
+      .steps strong {
+        color: var(--text);
+      }
+
+      .note {
+        margin-top: 22px;
+        color: #64748b;
+        font-size: 0.92rem;
+      }
+
+      code {
+        background: rgba(15, 23, 42, 0.06);
+        padding: 0.15rem 0.4rem;
+        border-radius: 0.5rem;
+        font-size: 0.95em;
+      }
+
+      @media (max-width: 480px) {
+        .card {
+          padding: 24px 20px;
+          border-radius: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="card" aria-labelledby="page-title">
+        <div class="badge">LaceFi Autofill</div>
+        <h1 id="page-title">You're all set</h1>
+        <p class="lead">
+          The LaceFi bulb should now be visible in the bottom-right corner of your screen.
+        </p>
+        <ul class="steps" aria-label="What happens on this page">
+          <li><strong>On this page:</strong> the bulb stays visible even if Ghost Mode is on.</li>
+          <li><strong>If you want:</strong> click the bulb to turn Ghost Mode off from here.</li>
+          <li><strong>If you do not see it:</strong> the LaceFi tool may not be installed or set up properly.</li>
+        </ul>
+      </section>
+
+      <input id="autofill_bulb_forceShow" type="hidden" value="true" />
+    </main>
+  </body>
+  </html>
