@@ -22,9 +22,8 @@
       body {
         margin: 0;
         min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 24px;
+        display: flex;
+        flex-direction: column;
         background:
           radial-gradient(circle at top, rgba(37, 99, 235, 0.1), transparent 34%),
           linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
@@ -34,8 +33,35 @@
       }
 
       main {
+        flex: 1;
         width: 100%;
         max-width: 560px;
+        margin: 0 auto;
+        padding: 24px;
+        display: grid;
+        place-items: center;
+      }
+
+      /* Footer — matches index.html */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 20px;
+      }
+      .footer-inner {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .footer-inner p { font-size: 12px; color: #94a3b8; margin: 0; }
+      .footer-inner a { font-size: 12px; color: #94a3b8; text-decoration: none; margin-left: 16px; }
+      .footer-inner a:hover { color: var(--text); }
+      @media (max-width: 480px) {
+        .footer-inner { flex-direction: column; text-align: center; }
+        .footer-inner a { margin: 0; }
       }
 
       .card {
@@ -164,5 +190,20 @@
 
       <input id="autofill_bulb_forceShow" type="hidden" value="true" />
     </main>
+
+    <footer>
+      <div class="footer-inner">
+        <p>&copy; <span id="copyright-year">2026</span> <strong>LaceFi</strong>. For practice and study only.</p>
+        <div>
+          <a href="/">Home</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="https://autofill.lacefi.co.ke/release-notes.html" target="_blank" rel="noopener noreferrer">Release Notes</a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.getElementById('copyright-year').textContent = String(new Date().getFullYear());
+    </script>
   </body>
   </html>
