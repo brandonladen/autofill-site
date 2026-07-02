@@ -385,15 +385,22 @@
 
     (function () {
       var KEY = 'lacefi_wa_popup_seen_v1';
-      function show() { document.getElementById('waModal').classList.add('show'); document.body.style.overflow = 'hidden'; }
+      var COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // re-prompt to join the group after 7 days
+      function stamp() { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
+      function show() {
+        document.getElementById('waModal').classList.add('show');
+        document.body.style.overflow = 'hidden';
+        stamp(); // start the 7-day cooldown when shown, so it also applies if ignored
+      }
       function hide() {
         document.getElementById('waModal').classList.remove('show');
         document.body.style.overflow = '';
-        try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+        stamp();
       }
       window.dismissWaModal = hide;
       try {
-        if (!localStorage.getItem(KEY)) {
+        var last = parseInt(localStorage.getItem(KEY) || '0', 10) || 0;
+        if (Date.now() - last > COOLDOWN_MS) {
           setTimeout(show, 1800);
         }
       } catch (e) { /* storage blocked — skip */ }
