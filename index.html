@@ -103,8 +103,10 @@
     .callout p{margin:6px 0 0;font-size:15px;line-height:1.5}
 
     /* video */
-    .videowrap{display:flex;justify-content:center}
-    .video{margin-top:4px;width:340px;max-width:100%;aspect-ratio:9/16;border:2px solid var(--ink);border-radius:4px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;background:var(--ink)}
+    .videowrap{display:flex;flex-wrap:wrap;justify-content:center;gap:34px}
+    .vitem{display:flex;flex-direction:column;align-items:center;gap:12px}
+    .video{width:300px;max-width:100%;aspect-ratio:9/16;border:2px solid var(--ink);border-radius:4px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;background:var(--ink)}
+    .vcap{font-family:var(--font-display);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.04em;text-align:center}
     .video iframe{display:block;width:100%;height:100%;border:0}
 
     /* features */
@@ -286,8 +288,23 @@
   <section class="sec" id="demo"><div class="wrap">
     <div class="sechead"><span class="num">03</span><h2>See it live</h2></div>
     <div class="videowrap">
-      <div class="video">
-        <iframe src="https://www.youtube.com/embed/yPeKaaRP0YM" title="LaceFi Autofill demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="vitem">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/yPeKaaRP0YM" title="LaceFi Autofill demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="vcap">Autofill in action</div>
+      </div>
+      <div class="vitem">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/o4h97We_rP0" title="Ghost mode" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="vcap">Ghost mode</div>
+      </div>
+      <div class="vitem">
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/s0Y4HrvkBvs" title="Set up with the WhatsApp bot" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="vcap">Set up with the WhatsApp bot</div>
       </div>
     </div>
   </div></section>
