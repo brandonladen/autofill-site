@@ -42,9 +42,26 @@
   .answer label { margin-left: 6px; }
   .check-row { margin-top: 16px; }
   .check-row button { background: #0f6cbf; color: #fff; border: 0; border-radius: 4px; padding: 8px 18px; font-size: 14px; cursor: pointer; }
-  #submitted { background: #eef0f2; border: 1px solid #c8cdd2; border-radius: 4px; padding: 10px 14px; margin-top: 12px; white-space: pre-wrap; font-family: Consolas, Monaco, monospace; font-size: 13px; display: none; }
+  #submitted { background: #eef0f2; border: 1px solid #c8cdd2; border-radius: 4px; padding: 10px 14px; margin-top: 12px; white-space: pre-wrap; font-family: Consolas, Monaco, monospace; font-size: 13px; display: none; overflow-x: auto; }
   #submitted.visible { display: block; }
   #submitted .label { font-family: inherit; font-weight: 600; display: block; margin-bottom: 6px; }
+
+  /* Wide content scrolls inside its own box instead of stretching the page */
+  div.coderunner-examples { overflow-x: auto; max-width: 100%; }
+  .check-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .check-row button { margin: 0 !important; }
+
+  /* Phones: stack the Moodle info column above the question content */
+  @media (max-width: 640px) {
+    .page { padding: 14px 10px 60px; }
+    .que { flex-direction: column; }
+    .que .info { width: auto; border-right: none; border-bottom: 1px solid #d9dde1; border-radius: 6px 6px 0 0; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; padding: 8px 12px; }
+    .que .info h3 { margin: 0; }
+    .que .info .state, .que .info .grade { margin: 0; }
+    .que .content { padding: 12px; }
+    .note { padding: 12px; }
+    #editor1 { height: 180px; }
+  }
 </style>
 </head>
 <body>
