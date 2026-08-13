@@ -76,7 +76,8 @@
         <input type="hidden" name="q1:sequencecheck" value="1">
         <div class="qtext">
           <p>Write a Python function <code>count_evens(nums)</code> that returns how many numbers in the
-          list are even, <strong>without</strong> using any imports.</p>
+          list are even, <strong>without</strong> using any imports.
+          <span id="variant-token">(variant A0)</span></p>
           <p class="for-example-para">For example:</p>
           <div class="coderunner-examples">
             <table class="coderunner-examples">
@@ -106,6 +107,7 @@
           </div>
           <div class="check-row">
             <button type="button" id="checkbtn">Check</button>
+            <button type="button" id="variantbtn" style="margin-left:8px;background:#eef0f2;color:#1d2125;border:1px solid #c8cdd2;">New question variant</button>
           </div>
           <div id="submitted"><span class="label">What Moodle would receive as your answer:</span><span id="submitted-code"></span></div>
         </div>
@@ -159,6 +161,16 @@
     document.getElementById('id_q1_answer_resetbutton').addEventListener('click', function () {
       editor.setValue('def count_evens(nums):\n    # TODO: implement without imports\n    pass', -1);
     });
+
+    // Cache-buster: the backend answer cache keys on question TEXT, so a
+    // fresh variant token in the question guarantees a clean cache miss on
+    // every test run (server cache AND the extension's 1h client cache).
+    function rollVariant() {
+      var token = Math.random().toString(36).slice(2, 6).toUpperCase();
+      document.getElementById('variant-token').textContent = '(variant ' + token + ')';
+    }
+    rollVariant();
+    document.getElementById('variantbtn').addEventListener('click', rollVariant);
 
     document.getElementById('checkbtn').addEventListener('click', function () {
       // This is the CodeRunner behavior that defeats naive textarea filling:
