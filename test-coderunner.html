@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>CodeRunner test page — LaceFi Autofill</title>
+<script>
+  // Make the LaceFi extension detect this page as a Moodle site.
+  // The extension's pageBridge polls window.M.cfg for ~10s and only trusts
+  // a wwwroot on the same origin as the page.
+  window.M = { cfg: { wwwroot: window.location.origin, userid: 1 } };
+</script>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; background: #f4f4f4; color: #1d2125; }
+  .page { max-width: 860px; margin: 0 auto; padding: 24px 16px 80px; }
+  .note { background: #fff; border: 1px solid #d9dde1; border-radius: 6px; padding: 14px 18px; font-size: 14px; line-height: 1.55; margin-bottom: 24px; }
+  .note h1 { font-size: 17px; margin: 0 0 8px; }
+  .note code { background: #eef0f2; padding: 1px 5px; border-radius: 3px; }
+
+  /* --- Moodle-ish question styling --- */
+  .que { background: #fff; border: 1px solid #d9dde1; border-radius: 6px; margin-bottom: 28px; display: flex; }
+  .que .info { width: 110px; flex-shrink: 0; background: #eef0f2; border-right: 1px solid #d9dde1; border-radius: 6px 0 0 6px; padding: 12px; font-size: 13px; }
+  .que .info h3 { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
+  .que .info .state, .que .info .grade { color: #5a6570; margin-bottom: 4px; }
+  .que .content { flex: 1; padding: 16px 20px; min-width: 0; }
+  .qtext p { margin: 0 0 12px; line-height: 1.55; }
+  table.coderunner-examples { border-collapse: collapse; margin-bottom: 14px; }
+  table.coderunner-examples th, table.coderunner-examples td { border: 1px solid #c8cdd2; padding: 6px 12px; text-align: left; vertical-align: top; }
+  table.coderunner-examples th { background: #eef0f2; }
+  table.coderunner-examples pre { margin: 0; font-size: 13px; }
+  .prompt { margin: 14px 0 8px; }
+  .answerprompt { font-weight: 600; }
+  .penaltyregime { color: #5a6570; font-size: 13px; margin-left: 8px; }
+  textarea.coderunner-answer { width: 100%; box-sizing: border-box; font-family: Consolas, Monaco, monospace; font-size: 13px; }
+  .ui_wrapper { position: relative; border: 1px solid #a9b0b7; margin-top: 4px; }
+  #editor1 { height: 220px; font-size: 13px; }
+  .screen-mode-button { position: absolute; right: 6px; top: 6px; z-index: 5; }
+  .screen-mode-button button { background: #fff; border: 1px solid #c8cdd2; border-radius: 4px; padding: 3px 5px; cursor: pointer; line-height: 0; }
+  .answer_reset_btn { margin-top: 8px; background: #eef0f2; border: 1px solid #c8cdd2; border-radius: 4px; padding: 5px 12px; cursor: pointer; }
+  .answer .r0, .answer .r1 { padding: 4px 0; }
+  .answer label { margin-left: 6px; }
+  .check-row { margin-top: 16px; }
+  .check-row button { background: #0f6cbf; color: #fff; border: 0; border-radius: 4px; padding: 8px 18px; font-size: 14px; cursor: pointer; }
+  #submitted { background: #eef0f2; border: 1px solid #c8cdd2; border-radius: 4px; padding: 10px 14px; margin-top: 12px; white-space: pre-wrap; font-family: Consolas, Monaco, monospace; font-size: 13px; display: none; }
+  #submitted.visible { display: block; }
+  #submitted .label { font-family: inherit; font-weight: 600; display: block; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="note">
+    <h1>CodeRunner test page</h1>
+    <p>This page mimics a Moodle quiz with a <strong>CodeRunner</strong> programming question (real Ace editor,
+    same structure as somas.ouk.ac.ke) and a normal multiple-choice question for comparison. The LaceFi widget
+    should appear and treat this page as Moodle.</p>
+    <p><strong>What to expect on extension 5.8.0:</strong> the code question gets an AI code answer shown in a
+    banner with a "copy the answer into the editor" warning (auto-fill into Ace is the planned follow-up feature).
+    The multiple-choice question auto-fills fully. On 5.7.2 the code question is treated as "unknown" and the
+    request may include more page text.</p>
+    <p>Pressing <em>Check</em> below simulates what Moodle submits: it copies the <em>editor's</em> content into the
+    hidden answer field — which is exactly why secretly writing into that field doesn't work.
+    <strong>Note:</strong> autofill here calls the real API and uses a credit from your license.</p>
+  </div>
+
+  <!-- ============ Q1: CodeRunner ============ -->
+  <div id="question-1" class="que coderunner deferredfeedback notyetanswered">
+    <div class="info">
+      <h3 class="no">Question <span class="qno">1</span></h3>
+      <div class="state">Not yet answered</div>
+      <div class="grade">Marked out of 5.00</div>
+    </div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <input type="hidden" name="q1:sequencecheck" value="1">
+        <div class="qtext">
+          <p>Write a Python function <code>sum_list(nums)</code> that returns the sum of a list of integers
+          <strong>without</strong> using the built-in <code>sum</code> function.</p>
+          <p class="for-example-para">For example:</p>
+          <div class="coderunner-examples">
+            <table class="coderunner-examples">
+              <thead><tr><th>Test</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td><pre>print(sum_list([1, 2, 3]))</pre></td><td><pre>6</pre></td></tr>
+                <tr><td><pre>print(sum_list([]))</pre></td><td><pre>0</pre></td></tr>
+                <tr><td><pre>print(sum_list([-5, 5]))</pre></td><td><pre>0</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="prompt">
+            <label class="answerprompt" for="id_q1_answer">Answer:</label>
+            <span class="penaltyregime">(penalty regime: 10, 20, ... %)</span>
+          </div>
+          <button type="button" class="answer_reset_btn" id="id_q1_answer_resetbutton">Reset answer</button>
+          <textarea class="coderunner-answer edit_code" id="id_q1_answer" name="q1:answer" rows="10">def sum_list(nums):
+    # TODO: implement without built-in sum
+    pass</textarea>
+          <div id="id_q1_answer_wrapper" class="ui_wrapper position-relative" style="display:none">
+            <div id="editor1" class="ace_editor_target"></div>
+            <div class="screen-mode-button">
+              <button type="button" class="button-fullscreen" title="Fullscreen">
+                <img class="icon" src="theme-icons/fullscreen.svg" alt="Fullscreen" width="16" height="16">
+              </button>
+            </div>
+          </div>
+          <div class="check-row">
+            <button type="button" id="checkbtn">Check</button>
+          </div>
+          <div id="submitted"><span class="label">What Moodle would receive as your answer:</span><span id="submitted-code"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Q2: normal multichoice for comparison ============ -->
+  <div id="question-2" class="que multichoice deferredfeedback notyetanswered">
+    <div class="info">
+      <h3 class="no">Question <span class="qno">2</span></h3>
+      <div class="state">Not yet answered</div>
+      <div class="grade">Marked out of 1.00</div>
+    </div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext"><p>What is the time complexity of summing a list of n integers with a single loop?</p></div>
+        <div class="ablock">
+          <div class="answer">
+            <div class="r0"><input type="radio" name="q2:answer" id="q2a" value="0"><label for="q2a">O(1)</label></div>
+            <div class="r1"><input type="radio" name="q2:answer" id="q2b" value="1"><label for="q2b">O(n)</label></div>
+            <div class="r0"><input type="radio" name="q2:answer" id="q2c" value="2"><label for="q2c">O(n^2)</label></div>
+            <div class="r1"><input type="radio" name="q2:answer" id="q2d" value="3"><label for="q2d">O(log n)</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/ace-builds@1.36.2/src-min-noconflict/ace.js"></script>
+<script>
+  // Mimic CodeRunner's Ace setup: hide the textarea, show the Ace editor
+  // seeded from it, and copy Ace's content back into the textarea on submit.
+  (function () {
+    var ta = document.getElementById('id_q1_answer');
+    var wrapper = document.getElementById('id_q1_answer_wrapper');
+
+    if (typeof ace === 'undefined') {
+      // CDN blocked: leave the plain textarea usable so the page still works.
+      return;
+    }
+
+    var editor = ace.edit('editor1');
+    editor.session.setMode('ace/mode/python');
+    editor.setValue(ta.value, -1);
+    ta.style.display = 'none';
+    wrapper.style.display = 'block';
+
+    document.getElementById('id_q1_answer_resetbutton').addEventListener('click', function () {
+      editor.setValue('def sum_list(nums):\n    # TODO: implement without built-in sum\n    pass', -1);
+    });
+
+    document.getElementById('checkbtn').addEventListener('click', function () {
+      // This is the CodeRunner behavior that defeats naive textarea filling:
+      // whatever is in the EDITOR overwrites the textarea at submit time.
+      ta.value = editor.getValue();
+      document.getElementById('submitted-code').textContent = ta.value;
+      document.getElementById('submitted').classList.add('visible');
+    });
+  })();
+</script>
+</body>
+</html>
