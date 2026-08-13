@@ -75,16 +75,16 @@
       <div class="formulation clearfix">
         <input type="hidden" name="q1:sequencecheck" value="1">
         <div class="qtext">
-          <p>Write a Python function <code>sum_list(nums)</code> that returns the sum of a list of integers
-          <strong>without</strong> using the built-in <code>sum</code> function.</p>
+          <p>Write a Python function <code>count_evens(nums)</code> that returns how many numbers in the
+          list are even, <strong>without</strong> using any imports.</p>
           <p class="for-example-para">For example:</p>
           <div class="coderunner-examples">
             <table class="coderunner-examples">
               <thead><tr><th>Test</th><th>Result</th></tr></thead>
               <tbody>
-                <tr><td><pre>print(sum_list([1, 2, 3]))</pre></td><td><pre>6</pre></td></tr>
-                <tr><td><pre>print(sum_list([]))</pre></td><td><pre>0</pre></td></tr>
-                <tr><td><pre>print(sum_list([-5, 5]))</pre></td><td><pre>0</pre></td></tr>
+                <tr><td><pre>print(count_evens([1, 2, 3, 4]))</pre></td><td><pre>2</pre></td></tr>
+                <tr><td><pre>print(count_evens([]))</pre></td><td><pre>0</pre></td></tr>
+                <tr><td><pre>print(count_evens([7, 9, 11]))</pre></td><td><pre>0</pre></td></tr>
               </tbody>
             </table>
           </div>
@@ -93,8 +93,8 @@
             <span class="penaltyregime">(penalty regime: 10, 20, ... %)</span>
           </div>
           <button type="button" class="answer_reset_btn" id="id_q1_answer_resetbutton">Reset answer</button>
-          <textarea class="coderunner-answer edit_code" id="id_q1_answer" name="q1:answer" rows="10">def sum_list(nums):
-    # TODO: implement without built-in sum
+          <textarea class="coderunner-answer edit_code" id="id_q1_answer" name="q1:answer" rows="10">def count_evens(nums):
+    # TODO: implement without imports
     pass</textarea>
           <div id="id_q1_answer_wrapper" class="ui_wrapper position-relative" style="display:none">
             <div id="editor1" class="ace_editor_target"></div>
@@ -157,7 +157,7 @@
     wrapper.style.display = 'block';
 
     document.getElementById('id_q1_answer_resetbutton').addEventListener('click', function () {
-      editor.setValue('def sum_list(nums):\n    # TODO: implement without built-in sum\n    pass', -1);
+      editor.setValue('def count_evens(nums):\n    # TODO: implement without imports\n    pass', -1);
     });
 
     document.getElementById('checkbtn').addEventListener('click', function () {
