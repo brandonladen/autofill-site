@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aurelian Faith test page — LaceFi Autofill</title>
+<script>
+  // Make the LaceFi extension detect this page as a Moodle site.
+  // pageBridge polls window.M.cfg for ~10s and only trusts a wwwroot on the
+  // same origin as the page.
+  window.M = { cfg: { wwwroot: window.location.origin, userid: 1, courseId: 9901 } };
+</script>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; background: #f4f4f4; color: #1d2125; }
+  .page { max-width: 860px; margin: 0 auto; padding: 24px 16px 90px; }
+  .note { background: #fff; border: 1px solid #d9dde1; border-radius: 6px; padding: 14px 18px; font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+  .note h1 { font-size: 18px; margin: 0 0 8px; }
+  .note ol { margin: 8px 0 0; padding-left: 20px; }
+  .note code { background: #eef0f2; padding: 1px 5px; border-radius: 3px; }
+  .badge { display:inline-block; background:#ede9fe; color:#6d28d9; border-radius:4px; padding:1px 7px; font-size:12px; font-weight:600; }
+
+  /* --- Moodle-ish question styling --- */
+  .que { background: #fff; border: 1px solid #d9dde1; border-radius: 6px; margin-bottom: 24px; display: flex; }
+  .que .info { width: 110px; flex-shrink: 0; background: #eef0f2; border-right: 1px solid #d9dde1; border-radius: 6px 0 0 6px; padding: 12px; font-size: 13px; }
+  .que .info h3 { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
+  .que .info .state, .que .info .grade { color: #5a6570; margin-bottom: 4px; }
+  .que .content { flex: 1; padding: 16px 20px; min-width: 0; }
+  .qtext p { margin: 0 0 12px; line-height: 1.55; font-size: 15px; }
+  .answer .r0, .answer .r1 { padding: 5px 0; display: flex; align-items: flex-start; gap: 8px; }
+  .answer label { line-height: 1.4; }
+  .answernumber { color: #5a6570; }
+  .check-row { margin-top: 14px; }
+  .check-row button { background: #0f6cbf; color: #fff; border: 0; border-radius: 4px; padding: 8px 18px; font-size: 14px; cursor: pointer; }
+
+  @media (max-width: 640px) {
+    .page { padding: 14px 10px 60px; }
+    .que { flex-direction: column; }
+    .que .info { width: auto; border-right: none; border-bottom: 1px solid #d9dde1; border-radius: 6px 6px 0 0; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; padding: 8px 12px; }
+    .que .content { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="note">
+    <h1>Aurelian Faith — test quiz <span class="badge">needs notes</span></h1>
+    <p>These questions are about a <b>fictional</b> religion, so the AI cannot answer them from general knowledge — it will ask you to upload the course notes. Test flow:</p>
+    <ol>
+      <li>Answer a question with the widget → you should get a <b>&ldquo;the answer is only in your notes&rdquo;</b> message.</li>
+      <li>Open the widget's <b>Notes</b> tab and upload <code>aurelian-faith-notes.pdf</code>.</li>
+      <li>Re-ask the same question → you should now get the <b>correct answer</b> (proves the no-cache re-ask + RAG).</li>
+      <li>Flip <b>Basic ⇄ Pro</b> in the widget and ask again to compare.</li>
+    </ol>
+  </div>
+
+  <!-- Q1 — the "Topic 3 classroom activities" example -->
+  <div class="que multichoice deferredfeedback notyetanswered" id="question-1">
+    <div class="info"><h3>Question 1</h3><div class="state">Not yet answered</div><div class="grade">Marked out of 1.00</div></div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext"><p>According to the notes, which of the following is one of Topic 3's classroom activities?</p></div>
+        <div class="ablock"><div class="answer">
+          <div class="r0"><input type="radio" name="q1" id="q1a0" value="0"><label for="q1a0"><span class="answernumber">a. </span>Individual silent meditation</label></div>
+          <div class="r1"><input type="radio" name="q1" id="q1a1" value="1"><label for="q1a1"><span class="answernumber">b. </span>The Candle-Naming ritual</label></div>
+          <div class="r0"><input type="radio" name="q1" id="q1a2" value="2"><label for="q1a2"><span class="answernumber">c. </span>A pilgrimage to the Well of Ash</label></div>
+          <div class="r1"><input type="radio" name="q1" id="q1a3" value="3"><label for="q1a3"><span class="answernumber">d. </span>Writing the 148th Cinder</label></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="que multichoice deferredfeedback notyetanswered" id="question-2">
+    <div class="info"><h3>Question 2</h3><div class="state">Not yet answered</div><div class="grade">Marked out of 1.00</div></div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext"><p>Who founded the Aurelian Faith?</p></div>
+        <div class="ablock"><div class="answer">
+          <div class="r0"><input type="radio" name="q2" id="q2a0" value="0"><label for="q2a0"><span class="answernumber">a. </span>Solara, the Twin-Flame</label></div>
+          <div class="r1"><input type="radio" name="q2" id="q2a1" value="1"><label for="q2a1"><span class="answernumber">b. </span>Vantetch, the Hollow Cold</label></div>
+          <div class="r0"><input type="radio" name="q2" id="q2a2" value="2"><label for="q2a2"><span class="answernumber">c. </span>The prophet Venn Talareth</label></div>
+          <div class="r1"><input type="radio" name="q2" id="q2a3" value="3"><label for="q2a3"><span class="answernumber">d. </span>The city of Cael Doran</label></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="que multichoice deferredfeedback notyetanswered" id="question-3">
+    <div class="info"><h3>Question 3</h3><div class="state">Not yet answered</div><div class="grade">Marked out of 1.00</div></div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext"><p>What is the holy text of the Aurelian Faith called?</p></div>
+        <div class="ablock"><div class="answer">
+          <div class="r0"><input type="radio" name="q3" id="q3a0" value="0"><label for="q3a0"><span class="answernumber">a. </span>The Codex of Embers</label></div>
+          <div class="r1"><input type="radio" name="q3" id="q3a1" value="1"><label for="q3a1"><span class="answernumber">b. </span>The Book of Dawn</label></div>
+          <div class="r0"><input type="radio" name="q3" id="q3a2" value="2"><label for="q3a2"><span class="answernumber">c. </span>The Cinder Scrolls</label></div>
+          <div class="r1"><input type="radio" name="q3" id="q3a3" value="3"><label for="q3a3"><span class="answernumber">d. </span>The Well of Ash</label></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="que multichoice deferredfeedback notyetanswered" id="question-4">
+    <div class="info"><h3>Question 4</h3><div class="state">Not yet answered</div><div class="grade">Marked out of 1.00</div></div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext"><p>What is the ritual greeting of the Emberkin?</p></div>
+        <div class="ablock"><div class="answer">
+          <div class="r0"><input type="radio" name="q4" id="q4a0" value="0"><label for="q4a0"><span class="answernumber">a. </span>&ldquo;Dawn to dusk&rdquo;</label></div>
+          <div class="r1"><input type="radio" name="q4" id="q4a1" value="1"><label for="q4a1"><span class="answernumber">b. </span>&ldquo;Ash to flame&rdquo;</label></div>
+          <div class="r0"><input type="radio" name="q4" id="q4a2" value="2"><label for="q4a2"><span class="answernumber">c. </span>&ldquo;Flame eternal&rdquo;</label></div>
+          <div class="r1"><input type="radio" name="q4" id="q4a3" value="3"><label for="q4a3"><span class="answernumber">d. </span>&ldquo;Memory and fire&rdquo;</label></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="color:#5a6570;font-size:13px;">Answer key (for you): 1‑b, 2‑c, 3‑a, 4‑b. All are stated in <code>aurelian-faith-notes.pdf</code>.</p>
+</div>
+</body>
+</html>
