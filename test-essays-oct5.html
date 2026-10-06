@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Essay test page — CIR 205 / CIT 115 (5 Oct 2026 feedback)</title>
+  <!--
+    Manual test page for the essay fixes (API CHG-048/049, extension 6.0.1 CHG-005).
+    Reproduces the four essay questions behind the 2026-10-05 feedback at
+    elearning.maseno.ac.ke. Q1–Q3 use the real question images (those Moodle
+    questions were image-only); Q4 (password algorithm) is reconstructed from the
+    stored answer. Answer boxes are real TinyMCE 6 editors like Maseno's.
+    Every load gets a fresh "(variant XXXX)" token so each run is a new AI call
+    (no server/client cache hit). Each run spends 4 credits.
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
+  <style>
+    body{font-family:system-ui,Arial,sans-serif;max-width:900px;margin:16px auto;padding:0 12px;color:#1d2125}
+    h2{font-size:1.25em}
+    .que{border:1px solid #ddd;border-radius:8px;padding:14px;margin:16px 0;background:#fff}
+    .que .qtext{font-size:1.02em;margin:6px 0 14px}
+    .que .qtext img{display:block;margin:10px 0;max-width:100%;height:auto;border:1px solid #ccc}
+    .info{font-size:.85em;color:#555;margin-bottom:8px}
+    .variant{font-size:.8em;color:#999}
+    .note{font-size:.9em;color:#444;background:#f6f7f9;border:1px solid #e3e5e8;border-radius:6px;padding:10px 12px}
+    button.variantbtn{margin:8px 0;background:#eef0f2;color:#1d2125;border:1px solid #c8cdd2;border-radius:6px;padding:6px 10px;cursor:pointer}
+  </style>
+</head>
+<body class="path-mod-quiz pagelayout-incourse">
+  <h2>Essay test page — the four 5 Oct feedback questions</h2>
+  <p class="note">Expected after the fixes: Q1 fills with a complete Java program in a code block, Q2 and Q3 with text flowcharts in code blocks (branches written out), Q4 with pseudocode in a code block. Nothing should end with a stray “FULL_” line. Each load has a fresh variant token, so answers are never served from cache; each run costs 4 credits.
+  <br><button type="button" class="variantbtn" id="variantbtn">New question variant</button></p>
+
+  <div class="que essay deferredfeedback notyetanswered" id="question-E-1">
+    <div class="info">Question 1 · CIR 205 Assignment 1 — “create a Java program” (was disliked twice: “Create direct correct answers not explanation”)</div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext">
+          <img src="test-assets/cir205-java-food-delivery.png" alt="Food delivery system Java program task">
+        </div>
+        <div class="ablock">
+          <div class="answer">
+            <div><textarea id="q1_answer" name="q1:1_answer" class="essay-editor" rows="10"></textarea></div>
+            <input type="hidden" name="q1:1_answerformat" value="1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="que essay deferredfeedback notyetanswered" id="question-E-2">
+    <div class="info">Question 2 · CIT 115 (a) — “Represent the above algorithm using flowchart” (was disliked: “Drawing”)</div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext">
+          <img src="test-assets/cit115-flowchart-online-purchase.png" alt="Online purchase process flowchart task">
+        </div>
+        <div class="ablock">
+          <div class="answer">
+            <div><textarea id="q2_answer" name="q2:1_answer" class="essay-editor" rows="10"></textarea></div>
+            <input type="hidden" name="q2:1_answerformat" value="1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="que essay deferredfeedback notyetanswered" id="question-E-3">
+    <div class="info">Question 3 · CIT 115 (b) — vacation-planning flowchart (was disliked)</div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext">
+          <img src="test-assets/cit115-flowchart-vacation.png" alt="Vacation planning flowchart task">
+        </div>
+        <div class="ablock">
+          <div class="answer">
+            <div><textarea id="q3_answer" name="q3:1_answer" class="essay-editor" rows="10"></textarea></div>
+            <input type="hidden" name="q3:1_answerformat" value="1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="que essay deferredfeedback notyetanswered" id="question-E-4">
+    <div class="info">Question 4 · CIT 115 — password validation algorithm (was liked twice; text reconstructed from the stored answer)</div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext">
+          <p>Write an algorithm that validates a password entered by a user. The password must be at least 8 characters long and must contain at least one uppercase letter, one lowercase letter, one number and one special character. If any condition is not met, the algorithm should display which condition(s) failed; otherwise it should display a success message.</p>
+        </div>
+        <div class="ablock">
+          <div class="answer">
+            <div><textarea id="q4_answer" name="q4:1_answer" class="essay-editor" rows="10"></textarea></div>
+            <input type="hidden" name="q4:1_answerformat" value="1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // The extension's pageBridge polls window.M.cfg and only trusts a wwwroot on
+    // the same origin as the page.
+    window.M = { cfg: { wwwroot: window.location.origin, userid: 1, courseId: 17820 } };
+
+    // Per-load variant token: defeats the server + client answer caches.
+    function rollVariant() {
+      var v = Math.random().toString(16).slice(2, 6).toUpperCase();
+      document.querySelectorAll('.que .qtext').forEach(function (q) {
+        var p = q.querySelector('.variant');
+        if (!p) { p = document.createElement('p'); p.className = 'variant'; q.appendChild(p); }
+        p.textContent = '(variant ' + v + ')';
+      });
+    }
+    rollVariant();
+    document.getElementById('variantbtn').addEventListener('click', rollVariant);
+
+    tinymce.init({ selector: 'textarea.essay-editor', height: 320, menubar: 'edit view insert format tools table help', promotion: false, branding: false });
+  </script>
+</body>
+</html>
