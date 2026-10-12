@@ -3,98 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex">
 <title>CodeRunner test page — LaceFi Autofill</title>
-<script>
-  // Make the LaceFi extension detect this page as a Moodle site.
-  // The extension's pageBridge polls window.M.cfg for ~10s and only trusts
-  // a wwwroot on the same origin as the page.
-  window.M = { cfg: { wwwroot: window.location.origin, userid: 1 } };
-</script>
 <style>
-  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; background: #f4f4f4; color: #1d2125; }
-  .page { max-width: 860px; margin: 0 auto; padding: 24px 16px 80px; }
-  .note { background: #fff; border: 1px solid #d9dde1; border-radius: 6px; padding: 14px 18px; font-size: 14px; line-height: 1.55; margin-bottom: 24px; }
-  .note h1 { font-size: 17px; margin: 0 0 8px; }
-  .note code { background: #eef0f2; padding: 1px 5px; border-radius: 3px; }
-
-  /* --- Moodle-ish question styling --- */
-  .que { background: #fff; border: 1px solid #d9dde1; border-radius: 6px; margin-bottom: 28px; display: flex; }
-  .que .info { width: 110px; flex-shrink: 0; background: #eef0f2; border-right: 1px solid #d9dde1; border-radius: 6px 0 0 6px; padding: 12px; font-size: 13px; }
-  .que .info h3 { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
-  .que .info .state, .que .info .grade { color: #5a6570; margin-bottom: 4px; }
-  .que .content { flex: 1; padding: 16px 20px; min-width: 0; }
-  .qtext p { margin: 0 0 12px; line-height: 1.55; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: #f1f3f5; color: #1d2125; margin: 0; }
+  .page { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  .intro { color: #4b5563; font-size: 14px; margin-bottom: 18px; line-height: 1.5; }
+  .que { display: flex; gap: 14px; background: #fff; border: 1px solid #dee2e6; border-radius: 6px; padding: 16px; margin-bottom: 18px; }
+  .que .info { width: 120px; flex-shrink: 0; font-size: 12px; color: #4b5563; }
+  .que .info .no { font-size: 14px; margin: 0 0 6px; color: #1d2125; }
+  .que .info .uitag { display: inline-block; margin-top: 8px; padding: 1px 6px; border: 1px solid #c8cdd2; border-radius: 4px; font-family: Consolas, monospace; font-size: 11px; }
+  .que .content { flex: 1; min-width: 0; }
+  .formulation { background: #e7f3f5; border-radius: 4px; padding: 14px; }
   table.coderunner-examples { border-collapse: collapse; margin-bottom: 14px; }
   table.coderunner-examples th, table.coderunner-examples td { border: 1px solid #c8cdd2; padding: 6px 12px; text-align: left; vertical-align: top; }
   table.coderunner-examples th { background: #eef0f2; }
   table.coderunner-examples pre { margin: 0; font-size: 13px; }
-  .prompt { margin: 14px 0 8px; }
-  .answerprompt { font-weight: 600; }
-  .penaltyregime { color: #5a6570; font-size: 13px; margin-left: 8px; }
+  .prompt { margin: 8px 0 6px; font-size: 14px; }
+  .penaltyregime { color: #6b7280; font-size: 12px; margin-left: 6px; }
   textarea.coderunner-answer { width: 100%; box-sizing: border-box; font-family: Consolas, Monaco, monospace; font-size: 13px; }
-  .ui_wrapper { position: relative; border: 1px solid #a9b0b7; margin-top: 4px; }
-  #editor1 { height: 220px; font-size: 13px; }
-  .screen-mode-button { position: absolute; right: 6px; top: 6px; z-index: 5; }
-  .screen-mode-button button { background: #fff; border: 1px solid #c8cdd2; border-radius: 4px; padding: 3px 5px; cursor: pointer; line-height: 0; }
-  .answer_reset_btn { margin-top: 8px; background: #eef0f2; border: 1px solid #c8cdd2; border-radius: 4px; padding: 5px 12px; cursor: pointer; }
-  .answer .r0, .answer .r1 { padding: 4px 0; }
-  .answer label { margin-left: 6px; }
-  .check-row { margin-top: 16px; }
-  .check-row button { background: #0f6cbf; color: #fff; border: 0; border-radius: 4px; padding: 8px 18px; font-size: 14px; cursor: pointer; }
-  #submitted { background: #eef0f2; border: 1px solid #c8cdd2; border-radius: 4px; padding: 10px 14px; margin-top: 12px; white-space: pre-wrap; font-family: Consolas, Monaco, monospace; font-size: 13px; display: none; overflow-x: auto; }
-  #submitted.visible { display: block; }
-  #submitted .label { font-family: inherit; font-weight: 600; display: block; margin-bottom: 6px; }
-
-  /* Wide content scrolls inside its own box instead of stretching the page */
-  div.coderunner-examples { overflow-x: auto; max-width: 100%; }
-  .check-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .check-row button { margin: 0 !important; }
-
-  /* Phones: stack the Moodle info column above the question content */
-  @media (max-width: 640px) {
-    .page { padding: 14px 10px 60px; }
-    .que { flex-direction: column; }
-    .que .info { width: auto; border-right: none; border-bottom: 1px solid #d9dde1; border-radius: 6px 6px 0 0; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; padding: 8px 12px; }
-    .que .info h3 { margin: 0; }
-    .que .info .state, .que .info .grade { margin: 0; }
-    .que .content { padding: 12px; }
-    .note { padding: 12px; }
-    #editor1 { height: 180px; }
-  }
+  .ui_wrapper { border: 1px solid #c8cdd2; border-radius: 4px; overflow: hidden; background: #fff; }
+  .scratchpad-label { font-size: 12px; color: #4b5563; margin: 6px 0 2px; }
+  .toolbar { display: flex; gap: 8px; margin: 0 0 16px; flex-wrap: wrap; }
+  button.btn { border: 1px solid #c8cdd2; background: #fff; border-radius: 4px; padding: 6px 12px; cursor: pointer; font-size: 13px; }
+  button.btn-primary { background: #0f6cbf; border-color: #0f6cbf; color: #fff; }
+  .submitted { background: #eef0f2; border: 1px solid #c8cdd2; border-radius: 4px; padding: 10px 14px; margin-top: 12px; white-space: pre-wrap; font-family: Consolas, Monaco, monospace; font-size: 13px; display: none; overflow-x: auto; }
+  .submitted.visible { display: block; }
+  .ace-gapfiller { min-height: 180px; }
+  @media (max-width: 640px) { .que { flex-direction: column; } .que .info { width: auto; } }
 </style>
+<script>
+  // Moodle's inline question scripts call require() before the loader at the
+  // end of the page is ready; queue them, as Moodle's own loader would.
+  window.__pendingRequires = [];
+  window.require = function (deps, cb) { window.__pendingRequires.push([deps, cb]); };
+</script>
 </head>
 <body>
 <div class="page">
-
-  <div class="note">
-    <h1>CodeRunner test page</h1>
-    <p>This page mimics a Moodle quiz with a <strong>CodeRunner</strong> programming question (real Ace editor,
-    same structure as somas.ouk.ac.ke) and a normal multiple-choice question for comparison. The LaceFi widget
-    should appear and treat this page as Moodle.</p>
-    <p><strong>What to expect on extension 5.8.0:</strong> the code question gets an AI code answer shown in a
-    banner with a "copy the answer into the editor" warning (auto-fill into Ace is the planned follow-up feature).
-    The multiple-choice question auto-fills fully. On 5.7.2 the code question is treated as "unknown" and the
-    request may include more page text.</p>
-    <p>Pressing <em>Check</em> below simulates what Moodle submits: it copies the <em>editor's</em> content into the
-    hidden answer field — which is exactly why secretly writing into that field doesn't work.
-    <strong>Note:</strong> autofill here calls the real API and uses a credit from your license.</p>
+  <h1>CodeRunner test page</h1>
+  <p class="intro">
+    A Moodle-shaped quiz running <strong>CodeRunner's real editor code</strong> (<code>ui_ace.js</code> and
+    <code>ui_ace_gapfiller.js</code> from the qtype_coderunner repository) behind a small stand-in for Moodle's module
+    loader. Each question is started by the same inline script Moodle prints,
+    <code>amd.newUiWrapper("&lt;ui&gt;", "&lt;textarea id&gt;")</code>. Q2's dataset lives only in the editor's starter
+    code; Q3 is a gap-filler (only the gaps are editable); Q4 uses the Scratchpad UI layout (JSON answer).
+    "Check" shows exactly what Moodle receives. The variant token defeats the answer caches.
+  </p>
+  <div class="toolbar">
+    <button type="button" class="btn" id="variantbtn">New question variant</button>
+    <button type="button" class="btn" id="reloadbtn">Reset page</button>
   </div>
 
-  <!-- ============ Q1: CodeRunner ============ -->
-  <div id="question-1" class="que coderunner deferredfeedback notyetanswered">
+  <form id="responseform" action="#" method="post" onsubmit="return false">
+
+  <!-- ============ Q1: Ace, function from scratch ============ -->
+  <div id="question-1" class="que coderunner adaptive_adapted_for_coderunner notyetanswered">
     <div class="info">
       <h3 class="no">Question <span class="qno">1</span></h3>
-      <div class="state">Not yet answered</div>
+      <div class="state">Not complete</div>
       <div class="grade">Marked out of 5.00</div>
+      <span class="uitag">ui: ace</span>
     </div>
     <div class="content">
       <div class="formulation clearfix">
-        <input type="hidden" name="q1:sequencecheck" value="1">
         <div class="qtext">
           <p>Write a Python function <code>count_evens(nums)</code> that returns how many numbers in the
           list are even, <strong>without</strong> using any imports.
-          <span id="variant-token">(variant A0)</span></p>
+          <span class="variant-token">(variant A0)</span></p>
           <p class="for-example-para">For example:</p>
           <div class="coderunner-examples">
             <table class="coderunner-examples">
@@ -102,101 +79,261 @@
               <tbody>
                 <tr><td><pre>print(count_evens([1, 2, 3, 4]))</pre></td><td><pre>2</pre></td></tr>
                 <tr><td><pre>print(count_evens([]))</pre></td><td><pre>0</pre></td></tr>
-                <tr><td><pre>print(count_evens([7, 9, 11]))</pre></td><td><pre>0</pre></td></tr>
               </tbody>
             </table>
           </div>
-          <div class="prompt">
-            <label class="answerprompt" for="id_q1_answer">Answer:</label>
-            <span class="penaltyregime">(penalty regime: 10, 20, ... %)</span>
-          </div>
-          <button type="button" class="answer_reset_btn" id="id_q1_answer_resetbutton">Reset answer</button>
-          <textarea class="coderunner-answer edit_code" id="id_q1_answer" name="q1:answer" rows="10">def count_evens(nums):
+          <div class="prompt"><label class="answerprompt" for="id_q1_answer">Answer:</label><span class="penaltyregime">(penalty regime: 10, 20, ... %)</span></div>
+          <textarea class="coderunner-answer edit_code" id="id_q1_answer" name="q1:1_answer" rows="10" data-params="{}" data-globalextra="" data-lang="python3" data-test0="print(count_evens([1, 2, 3, 4]))">def count_evens(nums):
     # TODO: implement without imports
     pass</textarea>
-          <div id="id_q1_answer_wrapper" class="ui_wrapper position-relative" style="display:none">
-            <div id="editor1" class="ace_editor_target"></div>
-            <div class="screen-mode-button">
-              <button type="button" class="button-fullscreen" title="Fullscreen">
-                <img class="icon" src="theme-icons/fullscreen.svg" alt="Fullscreen" width="16" height="16">
-              </button>
-            </div>
-          </div>
-          <div class="check-row">
-            <button type="button" id="checkbtn">Check</button>
-            <button type="button" id="variantbtn" style="margin-left:8px;background:#eef0f2;color:#1d2125;border:1px solid #c8cdd2;">New question variant</button>
-          </div>
-          <div id="submitted"><span class="label">What Moodle would receive as your answer:</span><span id="submitted-code"></span></div>
         </div>
       </div>
+      <button type="button" class="btn btn-primary checkbtn" data-target="id_q1_answer">Check</button>
+      <div class="submitted" id="submitted-id_q1_answer"></div>
     </div>
   </div>
+  <script>require(['qtype_coderunner/userinterfacewrapper'], function(amd) {amd.newUiWrapper("ace", "id_q1_answer")});</script>
 
-  <!-- ============ Q2: normal multichoice for comparison ============ -->
-  <div id="question-2" class="que multichoice deferredfeedback notyetanswered">
+  <!-- ============ Q2: Ace, data only in the starter code ============ -->
+  <div id="question-2" class="que coderunner adaptive_adapted_for_coderunner notyetanswered">
     <div class="info">
       <h3 class="no">Question <span class="qno">2</span></h3>
-      <div class="state">Not yet answered</div>
-      <div class="grade">Marked out of 1.00</div>
+      <div class="state">Not complete</div>
+      <div class="grade">Marked out of 10.00</div>
+      <span class="uitag">ui: ace</span>
     </div>
     <div class="content">
       <div class="formulation clearfix">
-        <div class="qtext"><p>What is the time complexity of summing a list of n integers with a single loop?</p></div>
-        <div class="ablock">
-          <div class="answer">
-            <div class="r0"><input type="radio" name="q2:answer" id="q2a" value="0"><label for="q2a">O(1)</label></div>
-            <div class="r1"><input type="radio" name="q2:answer" id="q2b" value="1"><label for="q2b">O(n)</label></div>
-            <div class="r0"><input type="radio" name="q2:answer" id="q2c" value="2"><label for="q2c">O(n^2)</label></div>
-            <div class="r1"><input type="radio" name="q2:answer" id="q2d" value="3"><label for="q2d">O(log n)</label></div>
-          </div>
+        <div class="qtext">
+          <p>You are provided with a sample dataset of mobile phone sales. <span class="variant-token">(variant A0)</span></p>
+          <p>You need to:</p>
+          <ul>
+            <li>Use the given data</li>
+            <li>Calculate the average price of the phones</li>
+            <li>Find the phones with price greater than 11,000</li>
+            <li>Print the average price, then each of those phones' brand on its own line</li>
+          </ul>
+          <div class="prompt"><label class="answerprompt" for="id_q2_answer">Answer:</label><span class="penaltyregime">(penalty regime: 10, 20, ... %)</span></div>
+          <textarea class="coderunner-answer edit_code" id="id_q2_answer" name="q1:2_answer" rows="14" data-params="{}" data-globalextra="" data-lang="python3" data-test0="print(len(phones))"># TODO: Use the provided data
+phones = [
+    {"brand": "Samsung", "model": "Galaxy S21", "price": 12000},
+    {"brand": "Oppo", "model": "Reno 5", "price": 11800},
+    {"brand": "Tecno", "model": "Camon 17", "price": 10000},
+    {"brand": "Infinix", "model": "Hot 11", "price": 11000},
+    {"brand": "Nokia", "model": "3310", "price": 9500},
+]
+
+# TODO: Calculate and print the average price
+
+# TODO: Print the brand of every phone priced above 11,000
+</textarea>
         </div>
       </div>
+      <button type="button" class="btn btn-primary checkbtn" data-target="id_q2_answer">Check</button>
+      <div class="submitted" id="submitted-id_q2_answer"></div>
     </div>
   </div>
+  <script>require(['qtype_coderunner/userinterfacewrapper'], function(amd) {amd.newUiWrapper("ace", "id_q2_answer")});</script>
 
+  <!-- ============ Q3: Ace gap-filler ============ -->
+  <div id="question-3" class="que coderunner adaptive_adapted_for_coderunner notyetanswered">
+    <div class="info">
+      <h3 class="no">Question <span class="qno">3</span></h3>
+      <div class="state">Not complete</div>
+      <div class="grade">Marked out of 4.00</div>
+      <span class="uitag">ui: ace_gapfiller</span>
+    </div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext">
+          <p>Fill in the gaps so that the program prints <code>Area: 12</code>. <span class="variant-token">(variant A0)</span></p>
+          <div class="prompt"><label class="answerprompt" for="id_q3_answer">Answer:</label><span class="penaltyregime">(penalty regime: 10, 20, ... %)</span></div>
+          <textarea class="coderunner-answer edit_code" id="id_q3_answer" name="q1:3_answer" rows="10" data-params="{}" data-lang="python3" data-test0="" data-globalextra="def area(width, height):
+    return {[ 22 ]}
+
+def describe(width, height):
+    return &quot;Area: &quot; + str({[ 22 ]})
+
+print(describe(3, 4))"></textarea>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary checkbtn" data-target="id_q3_answer">Check</button>
+      <div class="submitted" id="submitted-id_q3_answer"></div>
+    </div>
+  </div>
+  <script>require(['qtype_coderunner/userinterfacewrapper'], function(amd) {amd.newUiWrapper("ace_gapfiller", "id_q3_answer")});</script>
+
+  <!-- ============ Q4: Scratchpad UI layout ============ -->
+  <div id="question-4" class="que coderunner adaptive_adapted_for_coderunner notyetanswered">
+    <div class="info">
+      <h3 class="no">Question <span class="qno">4</span></h3>
+      <div class="state">Not complete</div>
+      <div class="grade">Marked out of 5.00</div>
+      <span class="uitag">ui: scratchpad</span>
+    </div>
+    <div class="content">
+      <div class="formulation clearfix">
+        <div class="qtext">
+          <p>Write a function <code>is_palindrome(s)</code> that returns <code>True</code> if <code>s</code> reads the same
+          backwards, ignoring case and spaces. <span class="variant-token">(variant A0)</span></p>
+          <div class="coderunner-examples">
+            <table class="coderunner-examples">
+              <thead><tr><th>Test</th><th>Result</th></tr></thead>
+              <tbody>
+                <tr><td><pre>print(is_palindrome("Never odd or even"))</pre></td><td><pre>True</pre></td></tr>
+                <tr><td><pre>print(is_palindrome("LaceFi"))</pre></td><td><pre>False</pre></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="prompt"><label class="answerprompt" for="id_q4_answer">Answer:</label><span class="penaltyregime">(penalty regime: 10, 20, ... %)</span></div>
+          <textarea class="coderunner-answer edit_code" id="id_q4_answer" name="q1:4_answer" rows="8" data-params="{}" data-globalextra="" data-lang="python3" data-test0="print(is_palindrome(&quot;Never odd or even&quot;))">{"answer_code":["def is_palindrome(s):\n    pass"],"test_code":[""],"show_hide":[""],"prefix_ans":["1"]}</textarea>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary checkbtn" data-target="id_q4_answer">Check</button>
+      <div class="submitted" id="submitted-id_q4_answer"></div>
+    </div>
+  </div>
+  <script>require(['qtype_coderunner/userinterfacewrapper'], function(amd) {amd.newUiWrapper("scratchpad", "id_q4_answer")});</script>
+
+  </form>
 </div>
 
+<script>window.M = { cfg: { wwwroot: location.origin, userid: 4242 } };</script>
 <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.36.2/src-min-noconflict/ace.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ace-builds@1.36.2/src-min-noconflict/ext-language_tools.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ace-builds@1.36.2/src-min-noconflict/ext-modelist.js"></script>
 <script>
-  // Mimic CodeRunner's Ace setup: hide the textarea, show the Ace editor
-  // seeded from it, and copy Ace's content back into the textarea on submit.
-  (function () {
-    var ta = document.getElementById('id_q1_answer');
-    var wrapper = document.getElementById('id_q1_answer_wrapper');
+// ---- Stand-in for Moodle's AMD loader + CodeRunner's userinterfacewrapper ----
+// The UI plugins themselves (ui_ace.js, ui_ace_gapfiller.js) are CodeRunner's
+// real source, fetched from the qtype_coderunner repository. Only the loader
+// and the wrapper (which in Moodle needs core/templates) are reproduced here,
+// following userinterfacewrapper.js loadUi(): construct, ready(), hide the
+// textarea, append getElement(), postInsert(), sync timer, sync on submit.
+(function () {
+  var CR_SRC = 'https://cdn.jsdelivr.net/gh/trampgeek/moodle-qtype_coderunner@master/amd/src/';
+  var modules = {};
+  var queue = Promise.resolve();
 
-    if (typeof ace === 'undefined') {
-      // CDN blocked: leave the plain textarea usable so the page still works.
-      return;
-    }
-
-    var editor = ace.edit('editor1');
-    editor.session.setMode('ace/mode/python');
-    editor.setValue(ta.value, -1);
-    ta.style.display = 'none';
-    wrapper.style.display = 'block';
-
-    document.getElementById('id_q1_answer_resetbutton').addEventListener('click', function () {
-      editor.setValue('def count_evens(nums):\n    # TODO: implement without imports\n    pass', -1);
+  function loadAmd(name) {
+    if (modules[name]) return modules[name];
+    modules[name] = queue = queue.then(function () {
+      return new Promise(function (resolve, reject) {
+        window.define = function (deps, factory) { resolve(factory()); };
+        var s = document.createElement('script');
+        s.src = CR_SRC + name + '.js';
+        s.onerror = function () { reject(new Error('could not load ' + name)); };
+        document.head.appendChild(s);
+      });
     });
+    return modules[name];
+  }
 
-    // Cache-buster: the backend answer cache keys on question TEXT, so a
-    // fresh variant token in the question guarantees a clean cache miss on
-    // every test run (server cache AND the extension's 1h client cache).
-    function rollVariant() {
-      var token = Math.random().toString(36).slice(2, 6).toUpperCase();
-      document.getElementById('variant-token').textContent = '(variant ' + token + ')';
-    }
-    rollVariant();
-    document.getElementById('variantbtn').addEventListener('click', rollVariant);
+  // Scratchpad layout (real ui_scratchpad.js needs core/templates): an inner
+  // "<id>_answer-code" textarea edited by the REAL ui_ace, and sync() writing
+  // the same JSON serialisation as CodeRunner's ScratchpadUi.getSerialisation().
+  function ScratchpadLayout(textareaId) {
+    this.textArea = document.getElementById(textareaId);
+    this.textareaId = textareaId;
+    var serial = { answer_code: [''], test_code: [''], show_hide: [''], prefix_ans: ['1'] };
+    try { serial = Object.assign(serial, JSON.parse(this.textArea.value || '{}')); } catch (e) { serial.answer_code = [this.textArea.value]; }
+    this.serial = serial;
+    this.outerDiv = document.createElement('div');
+    var label = document.createElement('div');
+    label.className = 'scratchpad-label'; label.textContent = 'Answer code';
+    this.inner = document.createElement('textarea');
+    this.inner.id = textareaId + '_answer-code';
+    this.inner.className = 'edit_code';
+    this.inner.rows = 8;
+    this.inner.setAttribute('data-lang', this.textArea.getAttribute('data-lang') || 'python3');
+    this.inner.value = serial.answer_code[0] || '';
+    this.outerDiv.appendChild(label);
+    this.outerDiv.appendChild(this.inner);
+  }
+  ScratchpadLayout.prototype.failed = function () { return false; };
+  ScratchpadLayout.prototype.getElement = function () { return this.outerDiv; };
+  ScratchpadLayout.prototype.postInsert = function () { new InterfaceWrapper('ace', this.inner.id); };
+  ScratchpadLayout.prototype.sync = function () {
+    var s = { answer_code: [this.inner.value], test_code: [this.serial.test_code[0] || ''], show_hide: [''], prefix_ans: ['1'] };
+    this.textArea.value = JSON.stringify(s);
+  };
+  ScratchpadLayout.prototype.syncIntervalSecs = function () { return 0; };
 
-    document.getElementById('checkbtn').addEventListener('click', function () {
-      // This is the CodeRunner behavior that defeats naive textarea filling:
-      // whatever is in the EDITOR overwrites the textarea at submit time.
-      ta.value = editor.getValue();
-      document.getElementById('submitted-code').textContent = ta.value;
-      document.getElementById('submitted').classList.add('visible');
+  function InterfaceWrapper(uiname, taId) {
+    var t = this;
+    this.uiname = uiname;
+    this.taId = taId;
+    this.textArea = document.getElementById(taId);
+    this.uiInstance = null;
+    this.DEFAULT_LINE_HEIGHT = 18;
+    this.wrapperNode = document.createElement('div');
+    this.wrapperNode.id = taId + '_wrapper';
+    this.wrapperNode.className = 'ui_wrapper position-relative';
+    this.wrapperNode.style.display = 'none';
+    this.textArea.parentNode.insertBefore(this.wrapperNode, this.textArea.nextSibling);
+    this.textArea.current_ui_wrapper = this;
+
+    var params = {};
+    try { params = JSON.parse(this.textArea.getAttribute('data-params') || '{}'); } catch (e) {}
+    params.lang = this.textArea.getAttribute('data-lang');
+
+    var load = uiname === 'scratchpad'
+      ? Promise.resolve({ Constructor: ScratchpadLayout })
+      : loadAmd('ui_' + uiname);
+    load.then(function (ui) {
+      var h = Math.max(160, t.textArea.clientHeight - 6);
+      var w = t.textArea.clientWidth;
+      var inst = new ui.Constructor(taId, w, h, params);
+      if (inst.failed()) { return; }
+      var ready = typeof inst.ready === 'function' ? inst.ready() : Promise.resolve();
+      return ready.then(function () {
+        t.textArea.style.display = 'none';
+        t.wrapperNode.style.display = '';
+        t.wrapperNode.appendChild(inst.getElement());
+        if (typeof inst.postInsert === 'function') inst.postInsert(t.wrapperNode);
+        t.uiInstance = inst;
+        var secs = typeof inst.syncIntervalSecs === 'function' ? inst.syncIntervalSecs() : 0;
+        if (secs) setInterval(function () { inst.sync(); }, secs * 1000);
+        t.textArea.setAttribute('data-ui-ready', '1');
+      });
+    }).catch(function (e) { console.error('[test page] UI load failed', e); t.textArea.setAttribute('data-ui-ready', 'failed'); });
+
+    var form = this.textArea.closest('form');
+    if (form) form.addEventListener('submit', function () { if (t.uiInstance) t.uiInstance.sync(); });
+  }
+  InterfaceWrapper.prototype.updateHeight = function () {};
+  InterfaceWrapper.prototype.checkForResize = function () {};
+
+  var amdModules = {
+    'qtype_coderunner/userinterfacewrapper': { newUiWrapper: function (uiname, id) { return new InterfaceWrapper(uiname, id); } },
+    'core/str': { get_string: function () { return Promise.resolve('Code editor'); } },
+  };
+  // Moodle's inline scripts above ran before this point; replay them now.
+  var pending = window.__pendingRequires || [];
+  window.require = function (deps, cb) { cb.apply(null, deps.map(function (d) { return amdModules[d]; })); };
+  pending.forEach(function (p) { window.require(p[0], p[1]); });
+})();
+
+// Page controls
+(function () {
+  document.querySelectorAll('.checkbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var form = document.getElementById('responseform');
+      form.dispatchEvent(new Event('submit'));
+      var ta = document.getElementById(b.dataset.target);
+      var value = new FormData(form).get(ta.name);
+      var out = document.getElementById('submitted-' + ta.id);
+      out.textContent = 'Submitted to Moodle (' + ta.name + '):\n\n' + value;
+      out.classList.add('visible');
     });
-  })();
+  });
+  function rollVariant() {
+    var token = Math.random().toString(36).slice(2, 6).toUpperCase();
+    document.querySelectorAll('.variant-token').forEach(function (s) { s.textContent = '(variant ' + token + ')'; });
+  }
+  rollVariant();
+  document.getElementById('variantbtn').addEventListener('click', rollVariant);
+  document.getElementById('reloadbtn').addEventListener('click', function () { location.reload(); });
+})();
 </script>
 </body>
 </html>
